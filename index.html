@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVK Group - Aluminium, Steel & Glass</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hidden-page {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcome-page" class="fixed inset-0 bg-slate-950 z-50 flex flex-col justify-center items-center overflow-hidden">
+        <h1 class="text-2xl md:text-4xl font-bold text-red-500 mb-8 tracking-widest animate-pulse">
+            ❤️ JAI SHREE SHYAM ❤️
+        </h1>
+        <div id="welcome-logo-container" class="w-48 h-48 rounded-2xl overflow-hidden bg-slate-800 flex items-center justify-center border border-slate-700 shadow-2xl opacity-0">
+            <img src="logo.png" alt="SVK Group Logo" class="w-full h-full object-cover" id="welcome-logo" onerror="this.onerror=null; this.parentElement.innerHTML='<span class="text-sky-400 font-bold text-xl">SVK GROUP</span>';">
+        </div>
+    </div>
+
+    <div id="main-site" class="hidden-page min-h-screen pt-24 pb-12">
+        
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-[20%] right-[-10%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <nav class="fixed top-0 left-0 w-full z-40 glass px-6 py-4 flex justify-between items-center shadow-lg">
+            <div class="text-2xl font-bold tracking-wider text-sky-400" id="main-logo">SVK GROUP</div>
+            <div class="flex space-x-6 font-medium text-sm md:text-base">
+                <button onclick="showSection('home-section')" class="hover:text-sky-400 transition-colors cursor-pointer">होम</button>
+                <button onclick="showSection('map-section')" class="hover:text-sky-400 transition-colors cursor-pointer">लोकेशन</button>
+            </div>
+        </nav>
+
+        <section id="home-section" class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center mt-12">
+            <h1 id="shop-title" class="text-4xl md:text-7xl font-bold mb-2 tracking-tight opacity-0">
+                SVK GROUP
+            </h1>
+            <p id="shop-subtitle" class="text-lg md:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-slate-200 to-blue-500 mb-8 opacity-0 tracking-widest">
+                ALUMINIUM & STEEL & GLASS
+            </p>
+            
+            <p class="text-slate-400 max-w-2xl mb-12 text-sm md:text-base">
+                प्रीमियम एल्युमिनियम सेक्शन्स, टफन ग्लास वर्क और हाई-क्वालिटी हार्डवेयर सॉल्यूशन्स के लिए राजस्थान का भरोसेमंद नाम।
+            </p>
+
+            <button onclick="showSection('map-section')" id="meet-us-btn" class="bg-gradient-to-r from-sky-500 to-blue-600 text-slate-900 font-bold px-10 py-4 rounded-xl shadow-lg shadow-sky-500/20 hover:opacity-90 transition-all cursor-pointer transform hover:scale-105 active:scale-95 opacity-0">
+                MEET US 📍
+            </button>
+
+            <div class="w-full max-w-4xl bg-amber-500/10 border border-amber-500/20 py-4 px-6 rounded-xl text-center text-amber-400 font-medium tracking-wide text-sm md:text-base mt-16 shadow-md">
+                ⚠️ सूचना: <span id="live-notice-text">कृपया ध्यान दें, दुकान पर बिका हुआ माल वापस नहीं होगा।</span>
+            </div>
+        </section>
+
+        <section id="map-section" class="hidden-page max-w-5xl mx-auto px-4 mt-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-sky-400 mb-2">हमारी दुकान पर आएं</h2>
+                <p class="text-slate-400 text-sm">नीचे दिए गए मैप की मदद से आप सीधे हमारी शॉप पर पहुंच सकते हैं</p>
+            </div>
+            
+            <div class="glass p-4 rounded-2xl shadow-2xl w-full h-[450px]">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.712345678912!2d74.1234567!3d26.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDA3JzE0LjIiTiA3NMKwMDcnMTQuMiJF!5e0!3m2!1shi!2sin!4v1710000000000!5m2!1shi!2sin" 
+                    class="w-full h-full rounded-xl border-0" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <div class="text-center mt-6">
+                <button onclick="showSection('home-section')" class="text-sm text-slate-400 hover:text-sky-400 underline cursor-pointer">
+                    ← वापस होम पेज पर जाएं
+                </button>
+            </div>
+        </section>
+
+        <section id="admin-section" class="hidden-page max-w-md mx-auto px-4 mt-12">
+            <div id="admin-login-box" class="glass p-8 rounded-2xl shadow-2xl border border-slate-700">
+                <h2 class="text-2xl font-bold text-center text-sky-400 mb-6">दुकानदार लॉगिन (Admin)</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">यूजरनेम</label>
+                        <input type="text" id="admin-username" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">पासवर्ड</label>
+                        <input type="password" id="admin-password" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500">
+                    </div>
+                    <p id="login-error" class="text-red-500 text-sm font-medium hidden text-center">गलत यूजरनेम या पासवर्ड!</p>
+                    <button onclick="handleLogin()" class="w-full bg-sky-500 hover:bg-sky-600 text-slate-900 font-bold py-3 rounded-xl transition-colors cursor-pointer mt-2">
+                        लॉगिन करें
+                    </button>
+                </div>
+            </div>
+
+            <div id="admin-dashboard-box" class="glass p-8 rounded-2xl shadow-2xl border border-emerald-500/30 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-emerald-400">SVK कंट्रोल पैनल</h2>
+                    <button onclick="handleLogout()" class="text-xs bg-red-500/20 text-red-400 px-3 py-1 rounded-lg border border-red-500/30 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">
+                        लॉगआउट
+                    </button>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                        <label class="block text-sm font-semibold text-slate-300 mb-3">दुकान की सूचना / नोटिस बदलें:</label>
+                        <textarea id="notice-input" rows="3" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-emerald-500 mb-3"></textarea>
+                        <button onclick="updateNotice()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold py-2.5 rounded-lg text-sm transition-colors cursor-pointer">
+                            सूचना अपडेट करें (Save Notice)
+                        </button>
+                    </div>
+                    <p class="text-xs text-slate-500 text-center">नोट: अभी यह बदलाव आपके इसी ब्राउज़र में सुरक्षित रहेगा।</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-8 text-center text-xs text-slate-600 border-t border-slate-900 mt-24">
+            <p>&copy; 2026 SVK Group. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <button onclick="showSection('admin-section')" class="fixed bottom-6 right-6 w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-sky-400 shadow-xl border border-slate-700 hover:border-sky-500/50 transition-all z-50 cursor-pointer group" title="Admin Login">
+        🔒
+        <span class="absolute right-12 bg-slate-900 text-[10px] text-sky-400 px-2 py-1 rounded border border-slate-700 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">ADMIN PORTAL</span>
+    </button>
+
+    <script>
+        // 1. WELCOME PAGE ANIMATIONS WITH GSAP
+        window.addEventListener('DOMContentLoaded', () => {
+            // लोड होते ही लोकल स्टोरेज से पुरानी सेव की हुई सूचना लोड करें
+            const savedNotice = localStorage.getItem('svk_notice');
+            if (savedNotice) {
+                document.getElementById('live-notice-text').innerText = savedNotice;
+                document.getElementById('notice-input').value = savedNotice;
+            } else {
+                document.getElementById('notice-input').value = document.getElementById('live-notice-text').innerText;
+            }
+
+            const welcomeTimeline = gsap.timeline();
+
+            // लोगो कंटेनर को पहले विजिबल करें
+            welcomeTimeline.to("#welcome-logo-container", {
+                opacity: 1,
+                duration: 0.2
+            });
+
+            // लोगो का जंपिंग और ब्राइटनेस एनिमेशन
+            welcomeTimeline.from("#welcome-logo-container", {
+                y: -150,
+                opacity: 0,
+                duration: 1.2,
+                ease: "bounce.out"
+            });
+
+            welcomeTimeline.to("#welcome-logo", {
+                filter: "brightness(1.8) contrast(1.2)",
+                duration: 0.5,
+                yoyo: true,
+                repeat: 1
+            });
+
+            // स्वागत स्क्रीन को विदा करना और मुख्य वेबसाइट को दिखाना
+            welcomeTimeline.to("#welcome-page", {
+                opacity: 0,
+                y: -50,
+                duration: 0.8,
+                delay: 1.2,
+                onComplete: () => {
+                    document.getElementById('welcome-page').style.display = 'none';
+                    const mainSite = document.getElementById('main-site');
+                    mainSite.classList.remove('hidden-page');
+                    
+                    // होम पेज लोड होने का मुख्य एनिमेशन
+                    triggerHomepageAnimations();
+                }
+            });
+        });
+
+        // 2. HOMEPAGE ANIMATION FUNCTION
+        function triggerHomepageAnimations() {
+            gsap.to("#shop-title", {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power4.out"
+            });
+
+            gsap.to("#shop-subtitle", {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.3,
+                ease: "power3.out"
+            });
+
+            gsap.to("#meet-us-btn", {
+                opacity: 1,
+                duration: 0.8,
+                delay: 0.6
+            });
+        }
+
+        // 3. MULTI-PAGE NAVIGATION LOGIC
+        function showSection(sectionId) {
+            // सभी सेक्शन्स को छुपाएं
+            document.getElementById('home-section').classList.add('hidden-page');
+            document.getElementById('map-section').classList.add('hidden-page');
+            document.getElementById('admin-section').classList.add('hidden-page');
+
+            // चुने गए सेक्शन को दिखाएं
+            const targetSection = document.getElementById(sectionId);
+            targetSection.classList.remove('hidden-page');
+
+            // नया सेक्शन खोलते समय स्क्रीन को ऊपर स्क्रॉल करें
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // अगर होम पेज दोबारा खोला जाए तो एनिमेशन रीसेट कर सकते हैं
+            if (sectionId === 'home-section') {
+                gsap.fromTo("#shop-title", {y: 20}, {y: 0, duration: 0.5});
+            }
+        }
+
+        // 4. ADMIN PORTAL AUTHENTICATION & LOGIN LOGIC
+        function handleLogin() {
+            const uInput = document.getElementById('admin-username').value;
+            const pInput = document.getElementById('admin-password').value;
+            const errorText = document.getElementById('login-error');
+
+            // यहाँ आपका क्रेडेंशियल सेट है
+            if (uInput === "svkadmin" && pInput === "svk@2026") {
+                errorText.classList.add('hidden');
+                document.getElementById('admin-login-box').classList.add('hidden');
+                document.getElementById('admin-dashboard-box').classList.remove('hidden');
+            } else {
+                errorText.classList.remove('hidden');
+            }
+        }
+
+        // LOGOUT LOGIC
+        function handleLogout() {
+            document.getElementById('admin-username').value = "";
+            document.getElementById('admin-password').value = "";
+            document.getElementById('admin-dashboard-box').classList.add('hidden');
+            document.getElementById('admin-login-box').classList.remove('hidden');
+            showSection('home-section');
+        }
+
+        // UPDATE SHOP NOTICE FROM DASHBOARD
+        function updateNotice() {
+            const newNotice = document.getElementById('notice-input').value;
+            if(newNotice.trim() !== "") {
+                // लाइव स्क्रीन पर टेक्स्ट बदलें
+                document.getElementById('live-notice-text').innerText = newNotice;
+                // लोकल स्टोरेज में सेव करें ताकि पेज रिफ्रेश होने पर भी न बदले
+                localStorage.setItem('svk_notice', newNotice);
+                alert("बधाई हो! SVK दुकान का नोटिस अपडेट हो गया है।");
+                showSection('home-section');
+            } else {
+                alert("कृपया नोटिस में कुछ टेक्स्ट लिखें!");
+            }
+        }
+    </script>
+</body>
+</html>
