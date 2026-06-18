@@ -22,6 +22,44 @@
         .hidden-page {
             display: none !important;
         }
+        /* Neon Lighting RGB Glow Effect */
+        .neon-glow-btn {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+            border: 2px solid rgba(56, 189, 248, 0.6);
+        }
+        .neon-glow-btn:hover {
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.8), inset 0 0 10px rgba(56, 189, 248, 0.4);
+            scale: 1.03;
+        }
+        .neon-glow-glass {
+            box-shadow: 0 0 15px rgba(232, 121, 249, 0.3);
+            border: 2px solid rgba(232, 121, 249, 0.6);
+        }
+        .neon-glow-glass:hover {
+            box-shadow: 0 0 25px rgba(232, 121, 249, 0.8), inset 0 0 10px rgba(232, 121, 249, 0.4);
+            scale: 1.03;
+        }
+        .neon-glow-steel {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+            border: 2px solid rgba(16, 185, 129, 0.6);
+        }
+        .neon-glow-steel:hover {
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.8), inset 0 0 10px rgba(16, 185, 129, 0.4);
+            scale: 1.03;
+        }
+        /* Animated Stripe Effect */
+        .animated-stripe {
+            background: linear-gradient(45deg, #0284c7 25%, #0369a1 25%, #0369a1 50%, #0284c7 50%, #0284c7 75%, #0369a1 75%, #0369a1);
+            background-size: 40px 40px;
+            animation: move-stripe 2s linear infinite;
+        }
+        @keyframes move-stripe {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 0; }
+        }
     </style>
 </head>
 <body>
@@ -30,79 +68,170 @@
         <h1 id="welcome-shyam" class="text-2xl md:text-4xl font-bold text-red-500 mb-4 tracking-widest opacity-0 text-center">
             ❤️ JAI SHREE SHYAM ❤️
         </h1>
-        
         <h2 id="welcome-group-text" class="text-xl md:text-3xl font-bold text-sky-400 mb-1 tracking-wide opacity-0 text-center uppercase">
             WELCOME TO OUR GROUP
         </h2>
         <p id="welcome-happy-text" class="text-xs md:text-sm text-slate-400 mb-8 font-light opacity-0 text-center">
             we are happy to see you 😊
         </p>
-
         <div id="welcome-logo-container" class="w-48 h-48 rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center border border-slate-800 shadow-2xl opacity-0">
             <img src="logo.png" alt="SVK Group Logo" class="w-full h-full object-cover" id="welcome-logo" onerror="this.onerror=null; this.parentElement.innerHTML='<span class="text-sky-400 font-bold text-xl">SVK GROUP</span>';">
         </div>
     </div>
 
     <div id="main-site" class="hidden-page min-h-screen pt-24 pb-12">
-        
-        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="absolute bottom-[20%] right-[-10%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none"></div>
-
         <nav class="fixed top-0 left-0 w-full z-40 glass px-6 py-4 flex justify-between items-center shadow-lg">
-            <div class="text-2xl font-bold tracking-wider text-sky-400">SVK GROUP</div>
-            <div class="flex space-x-6 font-medium text-sm md:text-base">
+            <div onclick="showSection('home-section')" class="text-2xl font-bold tracking-wider text-sky-400 cursor-pointer">SVK GROUP</div>
+            <div class="flex space-x-4 font-medium text-sm md:text-base">
                 <button onclick="showSection('home-section')" class="hover:text-sky-400 transition-colors cursor-pointer">होम</button>
+                <button onclick="scrollToOrderForm()" class="hover:text-emerald-400 transition-colors cursor-pointer">ऑर्डर फॉर्म</button>
                 <button onclick="showSection('map-section')" class="hover:text-sky-400 transition-colors cursor-pointer">लोकेशन</button>
             </div>
         </nav>
 
-        <section id="home-section" class="max-w-6xl mx-auto px-4 flex flex-col items-center text-center mt-12">
-            <h1 id="shop-title" class="text-4xl md:text-7xl font-bold mb-2 tracking-tight opacity-0">
-                SVK GROUP
-            </h1>
-            <p id="shop-subtitle" class="text-lg md:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-slate-200 to-blue-500 mb-8 opacity-0 tracking-widest">
-                ALUMINIUM & STEEL & GLASS
-            </p>
+        <section id="home-section" class="max-w-6xl mx-auto px-4 flex flex-col items-center mt-6">
+            <div class="text-center mb-10">
+                <h1 id="shop-title" class="text-4xl md:text-7xl font-bold mb-2 tracking-tight opacity-0">SVK GROUP</h1>
+                <p id="shop-subtitle" class="text-lg md:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-slate-200 to-blue-500 mb-4 opacity-0 tracking-widest">ALUMINIUM & STEEL & GLASS</p>
+                <p class="text-slate-400 max-w-xl mx-auto text-xs md:text-sm">नीचे दिए गए किसी भी कार्य पर क्लिक करके हमारा प्रीमियम काम और डिज़ाइन गैलरी देखें:</p>
+            </div>
             
-            <p class="text-slate-400 max-w-2xl mb-12 text-sm md:text-base">
-                प्रीमियम एल्युमिनियम सेक्शन्स, टफन ग्लास वर्क और हाई-क्वालिटी हार्डवेयर सॉल्यूशन्स के लिए राजस्थान का भरोसेमंद नाम।
-            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl px-4 mb-12">
+                <button onclick="openGalleryPage('aluminium')" class="neon-glow-btn h-32 rounded-2xl bg-slate-900/80 text-xl font-bold text-sky-400 flex flex-col justify-center items-center p-4 cursor-pointer">
+                    <span>🪟 Aluminium Work</span>
+                    <span class="text-xs text-slate-500 font-light mt-2">Windows & Sections</span>
+                </button>
+                <button onclick="openGalleryPage('glass')" class="neon-glow-glass h-32 rounded-2xl bg-slate-900/80 text-xl font-bold text-fuchsia-400 flex flex-col justify-center items-center p-4 cursor-pointer">
+                    <span>💎 Glass Work</span>
+                    <span class="text-xs text-slate-500 font-light mt-2">Toughened & Designed</span>
+                </button>
+                <button onclick="openGalleryPage('steel')" class="neon-glow-steel h-32 rounded-2xl bg-slate-900/80 text-xl font-bold text-emerald-400 flex flex-col justify-center items-center p-4 cursor-pointer">
+                    <span>🚧 Steel Work</span>
+                    <span class="text-xs text-slate-500 font-light mt-2">Railing & Structures</span>
+                </button>
+            </div>
 
-            <button onclick="showSection('map-section')" id="meet-us-btn" class="bg-gradient-to-r from-sky-500 to-blue-600 text-slate-900 font-bold px-10 py-4 rounded-xl shadow-lg shadow-sky-500/20 hover:opacity-90 transition-all cursor-pointer transform scale-100 hover:scale-105 active:scale-95 opacity-0">
-                MEET US 📍
-            </button>
+            <div onclick="showSection('order-section')" class="w-full max-w-4xl glass rounded-2xl overflow-hidden cursor-pointer transform hover:scale-[1.02] transition-all mb-12 shadow-xl border border-sky-500/20 group">
+                <div class="animated-stripe h-3 w-full"></div>
+                <div class="py-5 px-6 text-center">
+                    <p class="text-sm md:text-lg font-bold text-sky-300 tracking-wide group-hover:text-white transition-colors">
+                        📣 IF YOU WANT TO MAKING ANYTHING BY ALUMINIUM, STEEL, GLASS, TAP HERE 👈
+                    </p>
+                </div>
+                <div class="animated-stripe h-3 w-full"></div>
+            </div>
 
-            <div class="w-full max-w-4xl bg-amber-500/10 border border-amber-500/20 py-4 px-6 rounded-xl text-center text-amber-400 font-medium tracking-wide text-sm md:text-base mt-16 shadow-md">
+            <button onclick="showSection('map-section')" id="meet-us-btn" class="bg-gradient-to-r from-sky-500 to-blue-600 text-slate-900 font-bold px-10 py-3.5 rounded-xl shadow-lg shadow-sky-500/20 hover:opacity-90 transition-all cursor-pointer mb-12 opacity-0">MEET US 📍</button>
+            <div class="w-full max-w-4xl bg-amber-500/10 border border-amber-500/20 py-3.5 px-6 rounded-xl text-center text-amber-400 font-medium tracking-wide text-xs md:text-sm shadow-md">
                 ⚠️ सूचना: <span id="live-notice-text">कृपया ध्यान दें, दुकान पर बिका हुआ माल वापस नहीं होगा।</span>
             </div>
         </section>
 
-        <section id="map-section" class="hidden-page max-w-5xl mx-auto px-4 mt-8">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-sky-400 mb-2">हमारी दुकान पर आएं</h2>
-                <p class="text-slate-400 text-sm">नीचे दिए गए मैप की मदद से आप सीधे हमारी शॉप पर पहुंच सकते हैं</p>
-            </div>
+        <section id="gallery-section" class="hidden-page max-w-6xl mx-auto px-4 mt-4">
+            <div class="animated-stripe h-4 w-full rounded-t-xl mb-6"></div>
             
-            <div class="glass p-4 rounded-2xl shadow-2xl w-full h-[450px]">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.712345678912!2d74.1234567!3d26.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDA3JzE0LjIiTiA3NMKwMDcnMTQuMiJF!5e0!3m2!1shi!2sin!4v1710000000000!5m2!1shi!2sin" 
-                    class="w-full h-full rounded-xl border-0" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            <div class="text-center px-4 mb-8">
+                <h2 id="gallery-title" class="text-3xl md:text-5xl font-bold text-sky-400 uppercase tracking-wide">Gallery</h2>
+                <div onclick="showSection('order-section')" class="mt-4 bg-sky-950/40 border border-sky-500/30 rounded-xl py-3 px-4 max-w-2xl mx-auto cursor-pointer hover:bg-sky-900/40 transition-colors">
+                    <p class="text-xs md:text-sm font-semibold text-sky-300">💡 IF YOU WANT TO MAKING ANYTHING BY ALUMINIUM, STEEL, GLASS, TAP HERE</p>
+                </div>
             </div>
 
-            <div class="text-center mt-6">
-                <button onclick="showSection('home-section')" class="text-sm text-slate-400 hover:text-sky-400 underline cursor-pointer">
-                    ← वापस होम पेज पर जाएं
-                </button>
+            <div id="photos-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 px-2">
+                </div>
+
+            <div class="text-center mt-12 mb-6">
+                <button onclick="showSection('home-section')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-6 py-2.5 rounded-xl text-sm transition-colors cursor-pointer">← वापस होम पेज पर जाएं</button>
+            </div>
+            
+            <div class="animated-stripe h-4 w-full rounded-b-xl mt-6"></div>
+        </section>
+
+        <section id="order-section" class="hidden-page max-w-2xl mx-auto px-4 mt-4">
+            <div class="glass p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-700">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-sky-400 mb-2">ऑर्डर डिमांड फॉर्म</h2>
+                <p class="text-center text-slate-400 text-xs mb-8">कृपया अपनी आवश्यकता चुनें, हमारी टीम आपसे तुरंत संपर्क करेगी।</p>
+                
+                <form id="customer-demand-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-3">आपको क्या बनवाना है? (आप एक से ज़्यादा चुन सकते हैं):</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center space-x-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800 cursor-pointer hover:border-sky-500/40 transition-colors">
+                                <input type="checkbox" name="demand" value="DOOR" class="w-4 h-4 accent-sky-500">
+                                <span class="text-sm font-medium">DOOR (दरवाजा)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800 cursor-pointer hover:border-sky-500/40 transition-colors">
+                                <input type="checkbox" name="demand" value="WINDOWS" class="w-4 h-4 accent-sky-500">
+                                <span class="text-sm font-medium">WINDOWS (खिड़की)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800 cursor-pointer hover:border-sky-500/40 transition-colors">
+                                <input type="checkbox" name="demand" value="GLASS WORK" class="w-4 h-4 accent-sky-500">
+                                <span class="text-sm font-medium">GLASS WORK</span>
+                            </label>
+                            <label class="flex items-center space-x-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800 cursor-pointer hover:border-sky-500/40 transition-colors">
+                                <input type="checkbox" name="demand" value="RAILING" class="w-4 h-4 accent-sky-500">
+                                <span class="text-sm font-medium">RAILING (रेलिंग)</span>
+                            </label>
+                        </div>
+                        
+                        <label class="flex items-center space-x-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800 cursor-pointer hover:border-sky-500/40 transition-colors mt-3">
+                            <input type="checkbox" id="other-checkbox" name="demand" value="OTHER" onchange="toggleOtherInput()" class="w-4 h-4 accent-sky-500">
+                            <span class="text-sm font-medium">OTHER (कुछ और कार्य)</span>
+                        </label>
+                        <input type="text" id="other-text-input" placeholder="कृपया यहाँ लिखें कि आप क्या बनवाना चाहते हैं..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500 mt-2 hidden">
+                    </div>
+
+                    <div class="border-t border-slate-800/80 my-4"></div>
+
+                    <div class="space-y-4">
+                        <label class="block text-sm font-semibold text-slate-300 mb-1">आपकी संपर्क जानकारी:</label>
+                        <div>
+                            <input type="text" id="cust-name" required placeholder="आपका पूरा नाम (Full Name)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-sky-500">
+                        </div>
+                        <div>
+                            <input type="tel" id="cust-phone" required pattern="[0-9]{10}" placeholder="मोबाइल नंबर (10-Digit Mobile No.)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-sky-500">
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <label class="block text-sm font-semibold text-slate-300 mb-1">पता और साइट लोकेशन:</label>
+                        
+                        <button type="button" onclick="getLiveGPSLocation()" class="w-full bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/30 text-blue-400 font-medium py-2.5 rounded-xl text-xs flex justify-center items-center space-x-2 cursor-pointer transition-all">
+                            <span>📍 SHARE LIVE LOCATION (नक्शा लोकेशन शेयर करें)</span>
+                        </button>
+                        <p id="gps-status" class="text-[11px] text-emerald-400 font-medium text-center hidden">✓ आपकी सटीक लोकेशन जोड़ दी गई है!</p>
+                        <input type="hidden" id="cust-gps" value="">
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <input type="text" id="cust-village" required placeholder="गांव/कस्बा (Village)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500">
+                            <input type="text" id="cust-pincode" required placeholder="पिनकोड (Pincode)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500">
+                        </div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <input type="text" id="cust-district" required placeholder="जिला" value="Sikar" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500">
+                            <input type="text" id="cust-state" required placeholder="राज्य" value="Rajasthan" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:opacity-90 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg transition-all cursor-pointer text-base uppercase mt-4">
+                        FINISH 🏁
+                    </button>
+                </form>
             </div>
         </section>
 
-        <section id="admin-section" class="hidden-page max-w-md mx-auto px-4 mt-12">
-            <div id="admin-login-box" class="glass p-8 rounded-2xl shadow-2xl border border-slate-700">
-                <h2 class="text-2xl font-bold text-center text-sky-400 mb-6">दुकанदार लॉगिन (Admin)</h2>
+        <section id="map-section" class="hidden-page max-w-5xl mx-auto px-4 mt-4">
+            <div class="text-center mb-6">
+                <h2 class="text-3xl font-bold text-sky-400 mb-1">हमारी दुकान पर आएं</h2>
+                <p class="text-slate-400 text-xs">नीचे दिए गए मैप की मदद से आप सीधे हमारी शॉप पर पहुंच सकते हैं</p>
+            </div>
+            <div class="glass p-3 rounded-2xl shadow-2xl w-full h-[400px]">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.712345678912!2d74.1234567!3d26.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDA3JzE0LjIiTiA3NMKwMDcnMTQuMiJF!5e0!3m2!1shi!2sin!4v1710000000000!5m2!1shi!2sin" class="w-full h-full rounded-xl border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <section id="admin-section" class="hidden-page max-w-5xl mx-auto px-4 mt-4">
+            <div id="admin-login-box" class="glass p-8 rounded-2xl shadow-2xl max-w-md mx-auto border border-slate-700">
+                <h2 class="text-2xl font-bold text-center text-sky-400 mb-6">दुकानदार लॉगिन (Admin)</h2>
                 <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">यूजरनेम</label>
@@ -112,29 +241,42 @@
                         <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">पासवर्ड</label>
                         <input type="password" id="admin-password" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-sky-500">
                     </div>
-                    <p id="login-error" class="text-red-500 text-sm font-medium hidden text-center">गलत यूजरनेम या पासवर्ड!</p>
-                    <button onclick="handleLogin()" class="w-full bg-sky-500 hover:bg-sky-600 text-slate-900 font-bold py-3 rounded-xl transition-colors cursor-pointer mt-2">
-                        लॉगिन करें
-                    </button>
+                    <p id="login-error" class="text-red-500 text-sm font-medium hidden text-center">गलत क्रेडेंशियल!</p>
+                    <button onclick="handleLogin()" class="w-full bg-sky-500 text-slate-900 font-bold py-3 rounded-xl cursor-pointer mt-2">लॉगिन</button>
                 </div>
             </div>
 
-            <div id="admin-dashboard-box" class="glass p-8 rounded-2xl shadow-2xl border border-emerald-500/30 hidden">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-emerald-400">SVK कंट्रोल पैनल</h2>
-                    <button onclick="handleLogout()" class="text-xs bg-red-500/20 text-red-400 px-3 py-1 rounded-lg border border-red-500/30 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">
-                        लॉगआउट
-                    </button>
-                </div>
-                
-                <div class="space-y-6">
-                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-                        <label class="block text-sm font-semibold text-slate-300 mb-3">दुकान की सूचना / नोटिस बदलें:</label>
-                        <textarea id="notice-input" rows="3" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-white text-sm focus:outline-none focus:border-emerald-500 mb-3"></textarea>
-                        <button onclick="updateNotice()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold py-2.5 rounded-lg text-sm transition-colors cursor-pointer">
-                            सूचना अपडेट करें (Save Notice)
-                        </button>
+            <div id="admin-dashboard-box" class="glass p-6 rounded-2xl shadow-2xl border border-emerald-500/30 hidden">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                    <h2 class="text-2xl font-bold text-emerald-400">SVK ग्राहक डेटा लीड्स 📈</h2>
+                    <div class="flex space-x-3">
+                        <button onclick="clearAllLeads()" class="text-xs bg-red-500/10 text-red-400 px-3 py-1.5 rounded-lg border border-red-500/20 hover:bg-red-500 hover:text-white transition-all cursor-pointer">डेटा क्लियर करें</button>
+                        <button onclick="handleLogout()" class="text-xs bg-slate-800 text-slate-300 px-4 py-1.5 rounded-lg border border-slate-700 hover:bg-slate-700 cursor-pointer">लॉगआउट</button>
                     </div>
+                </div>
+
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800 mb-6">
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">लाइव सूचना पट्टी बदलें:</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="notice-input" class="flex-1 bg-slate-950 border border-slate-700 rounded-lg p-2 text-white text-sm focus:outline-none focus:border-emerald-500">
+                        <button onclick="updateNotice()" class="bg-emerald-500 text-slate-950 font-bold px-4 rounded-lg text-xs cursor-pointer hover:opacity-90">अपडेट</button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto rounded-xl border border-slate-800">
+                    <table class="w-full text-left border-collapse text-xs md:text-sm">
+                        <thead>
+                            <tr class="bg-slate-900 text-slate-300 border-b border-slate-800">
+                                <th class="p-3">नाम</th>
+                                <th class="p-3">मोबाइल नंबर</th>
+                                <th class="p-3">मांग (Requirements)</th>
+                                <th class="p-3">पता (Address)</th>
+                                <th class="p-3 text-center">लोकेशन मैप</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leads-table-body">
+                            </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -144,13 +286,42 @@
         </footer>
     </div>
 
-    <button onclick="showSection('admin-section')" class="fixed bottom-6 right-6 w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-sky-400 shadow-xl border border-slate-700 hover:border-sky-500/50 transition-all z-50 cursor-pointer group">
-        🔒
-    </button>
+    <button onclick="showSection('admin-section')" class="fixed bottom-6 right-6 w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-sky-400 border border-slate-700 z-50 cursor-pointer">🔒</button>
+
+    <div id="success-popup" class="fixed inset-0 bg-black/80 z-50 hidden justify-center items-center p-4">
+        <div class="glass p-8 rounded-2xl max-w-sm w-full text-center border border-emerald-500/40 transform scale-95 opacity-0 transition-all duration-300" id="success-card">
+            <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">✓</div>
+            <h3 class="text-xl font-bold text-emerald-400 mb-2">थैंक यू! (Thank You)</h3>
+            <p class="text-slate-300 text-sm mb-6">SVK ग्रुप में आपकी मांग दर्ज कर ली गई है। हमारी टीम आपसे बहुत जल्द संपर्क करेगी। 😊 🙏</p>
+            <button onclick="closeSuccessPopup()" class="w-full bg-emerald-500 text-slate-950 font-bold py-2.5 rounded-xl text-sm cursor-pointer hover:opacity-90">ठीक है</button>
+        </div>
+    </div>
 
     <script>
+        // Sample Placeholder high-quality imagery logic
+        const sampleGalleryImages = {
+            aluminium: [
+                'https://picsum.photos/600/400?random=1', 'https://picsum.photos/600/400?random=2',
+                'https://picsum.photos/600/400?random=3', 'https://picsum.photos/600/400?random=4',
+                'https://picsum.photos/600/400?random=5', 'https://picsum.photos/600/400?random=6',
+                'https://picsum.photos/600/400?random=7'
+            ],
+            glass: [
+                'https://picsum.photos/600/400?random=11', 'https://picsum.photos/600/400?random=12',
+                'https://picsum.photos/600/400?random=13', 'https://picsum.photos/600/400?random=14',
+                'https://picsum.photos/600/400?random=15', 'https://picsum.photos/600/400?random=16',
+                'https://picsum.photos/600/400?random=17', 'https://picsum.photos/600/400?random=18'
+            ],
+            steel: [
+                'https://picsum.photos/600/400?random=21', 'https://picsum.photos/600/400?random=22',
+                'https://picsum.photos/600/400?random=23', 'https://picsum.photos/600/400?random=24',
+                'https://picsum.photos/600/400?random=25', 'https://picsum.photos/600/400?random=26',
+                'https://picsum.photos/600/400?random=27'
+            ]
+        };
+
         window.addEventListener('load', () => {
-            // LocalStorage Notice Setup
+            // Notice Init Setup
             const savedNotice = localStorage.getItem('svk_notice');
             if (savedNotice) {
                 document.getElementById('live-notice-text').innerText = savedNotice;
@@ -158,25 +329,18 @@
             } else {
                 document.getElementById('notice-input').value = document.getElementById('live-notice-text').innerText;
             }
+            renderLeadsTable();
 
-            // GSAP Timeline for Perfect Welcome Page Sequence
+            // GSAP Sequence Animations
             const tl = gsap.timeline();
-
-            // 1. सबसे पहले टेक्स्ट सुंदर तरीके से धुंधलेपन से साफ होंगे (Fade In)
             tl.to("#welcome-shyam", { opacity: 1, y: 10, duration: 0.6, ease: "power2.out" })
               .to("#welcome-group-text", { opacity: 1, duration: 0.6 }, "-=0.3")
-              .to("#welcome-happy-text", { opacity: 1, duration: 0.5 }, "-=0.2");
-
-            // 2. अब लोगो का डिब्बा ऊपर से बाउंस होता हुआ कूदेगा (Jumping Effect)
-            tl.to("#welcome-logo-container", { opacity: 1, duration: 0.1 })
-              .from("#welcome-logo-container", { y: -250, duration: 1.2, ease: "bounce.out" }, "-=0.1");
-
-            // 3. यहाँ लोगो स्टेबल होकर अपनी चमक (Brightness) बढ़ाएगा
-            tl.to("#welcome-logo", { filter: "brightness(1.7) contrast(1.1)", duration: 0.6 })
-              .to("#welcome-logo", { filter: "brightness(1.0) contrast(1.0)", duration: 0.6 });
-
-            // 4. पूरा वेलकम पेज अब स्मूथली ऊपर गायब हो जाएगा और होमपेज खुलेगा
-            tl.to("#welcome-page", {
+              .to("#welcome-happy-text", { opacity: 1, duration: 0.5 }, "-=0.2")
+              .to("#welcome-logo-container", { opacity: 1, duration: 0.1 })
+              .from("#welcome-logo-container", { y: -250, duration: 1.2, ease: "bounce.out" }, "-=0.1")
+              .to("#welcome-logo", { filter: "brightness(1.7) contrast(1.1)", duration: 0.6 })
+              .to("#welcome-logo", { filter: "brightness(1.0) contrast(1.0)", duration: 0.6 })
+              .to("#welcome-page", {
                 opacity: 0,
                 y: -100,
                 duration: 0.8,
@@ -184,11 +348,10 @@
                 ease: "power3.inOut",
                 onComplete: () => {
                     document.getElementById('welcome-page').style.display = 'none';
-                    const mainSite = document.getElementById('main-site');
-                    mainSite.classList.remove('hidden-page');
+                    document.getElementById('main-site').classList.remove('hidden-page');
                     triggerHomepageAnimations();
                 }
-            });
+              });
         });
 
         function triggerHomepageAnimations() {
@@ -199,16 +362,163 @@
 
         function showSection(sectionId) {
             document.getElementById('home-section').classList.add('hidden-page');
+            document.getElementById('gallery-section').classList.add('hidden-page');
+            document.getElementById('order-section').classList.add('hidden-page');
             document.getElementById('map-section').classList.add('hidden-page');
             document.getElementById('admin-section').classList.add('hidden-page');
+            
             document.getElementById(sectionId).classList.remove('hidden-page');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function scrollToOrderForm() {
+            showSection('order-section');
+        }
+
+        // 🖼️ OPEN DEDICATED GALLERY DISPLAYS WITH FILE MAPPING INSTRUCTION
+        function openGalleryPage(type) {
+            const titleElement = document.getElementById('gallery-title');
+            const gridContainer = document.getElementById('photos-grid');
+            gridContainer.innerHTML = ''; // reset content
+            
+            let currentPrefix = '';
+            let imageArray = [];
+
+            if(type === 'aluminium') {
+                titleElement.innerText = "Aluminium Windows & Sections";
+                titleElement.className = "text-2xl md:text-4xl font-bold text-sky-400 uppercase tracking-wide";
+                currentPrefix = 'alu';
+                imageArray = sampleGalleryImages.aluminium;
+            } else if(type === 'glass') {
+                titleElement.innerText = "Glass Work Gallery";
+                titleElement.className = "text-2xl md:text-4xl font-bold text-fuchsia-400 uppercase tracking-wide";
+                currentPrefix = 'glass';
+                imageArray = sampleGalleryImages.glass;
+            } else if(type === 'steel') {
+                titleElement.innerText = "Steel Railing & Structure";
+                titleElement.className = "text-2xl md:text-4xl font-bold text-emerald-400 uppercase tracking-wide";
+                currentPrefix = 'steel';
+                imageArray = sampleGalleryImages.steel;
+            }
+
+            // High performant lazy loading items loop architecture
+            imageArray.forEach((placeholderUrl, index) => {
+                const imgNum = index + 1;
+                const fileName = `${currentPrefix}${imgNum}.png`;
+                
+                const card = document.createElement('div');
+                card.className = "bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-md opacity-0 transform translate-y-6 gallery-img-card";
+                card.innerHTML = `
+                    <div class="h-40 md:h-52 w-full overflow-hidden bg-slate-950 flex items-center justify-center">
+                        <img src="${fileName}" alt="SVK Design Work" loading="lazy" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" onerror="this.onerror=null; this.src='${placeholderUrl}';">
+                    </div>
+                    <div class="p-2 text-center text-[10px] text-slate-500 font-mono tracking-tight">${fileName}</div>
+                `;
+                gridContainer.appendChild(card);
+            });
+
+            showSection('gallery-section');
+
+            // Scroll Animation Trigger via GSAP
+            gsap.to(".gallery-img-card", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+        }
+
+        // 🎛️ CUSTOMER INTERACTION HANDLERS & GPS TRACKING
+        function toggleOtherInput() {
+            const chk = document.getElementById('other-checkbox');
+            const txt = document.getElementById('other-text-input');
+            if(chk.checked) {
+                txt.classList.remove('hidden');
+                txt.setAttribute('required', 'true');
+            } else {
+                txt.classList.add('hidden');
+                txt.removeAttribute('required');
+            }
+        }
+
+        function getLiveGPSLocation() {
+            const status = document.getElementById('gps-status');
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    document.getElementById('cust-gps').value = `${lat},${lon}`;
+                    status.classList.remove('hidden');
+                }, () => {
+                    alert("लोकेशन एक्सेस नहीं मिल पाया। कृपया मैन्युअली फॉर्म भरें।");
+                });
+            } else {
+                alert("आपका ब्राउज़र GPS सपोर्ट नहीं करता।");
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            // Collect Requirements Checkboxes Multi Choice
+            const checkboxes = document.querySelectorAll('input[name="demand"]:checked');
+            let demandsSelected = [];
+            checkboxes.forEach((cb) => {
+                if(cb.value === 'OTHER') {
+                    const otherText = document.getElementById('other-text-input').value;
+                    if(otherText.trim() !== '') demandsSelected.push(`OTHER: ${otherText}`);
+                } else {
+                    demandsSelected.push(cb.value);
+                }
+            });
+
+            if(demandsSelected.length === 0) {
+                alert("कृपया कम से कम एक कार्य विकल्प अवश्य चुनें!");
+                return;
+            }
+
+            // Create client data packet structures
+            const newLead = {
+                name: document.getElementById('cust-name').value,
+                phone: document.getElementById('cust-phone').value,
+                demands: demandsSelected.join(', '),
+                address: `${document.getElementById('cust-village').value}, Pin: ${document.getElementById('cust-pincode').value}, ${document.getElementById('cust-district').value}, ${document.getElementById('cust-state').value}`,
+                gps: document.getElementById('cust-gps').value
+            };
+
+            // Save to LocalStorage Local Database Engine
+            let leads = JSON.parse(localStorage.getItem('svk_leads')) || [];
+            leads.push(newLead);
+            localStorage.setItem('svk_leads', JSON.stringify(leads));
+
+            // Fire UI Popup Success triggers
+            document.getElementById('customer-demand-form').reset();
+            document.getElementById('other-text-input').classList.add('hidden');
+            document.getElementById('gps-status').classList.add('hidden');
+            
+            const popup = document.getElementById('success-popup');
+            const card = document.getElementById('success-card');
+            popup.style.display = 'flex';
+            gsap.to(card, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.5)" });
+            
+            renderLeadsTable();
+        }
+
+        function closeSuccessPopup() {
+            const popup = document.getElementById('success-popup');
+            const card = document.getElementById('success-card');
+            gsap.to(card, { opacity: 0, scale: 0.9, duration: 0.2, onComplete: () => {
+                popup.style.display = 'none';
+                showSection('home-section');
+            }});
+        }
+
+        // 🔒 ADMIN SECTION INFRASTRUCTURE LOGIC
         function handleLogin() {
-            const uInput = document.getElementById('admin-username').value;
-            const pInput = document.getElementById('admin-password').value;
-            if (uInput === "svkadmin" && pInput === "svk@2026") {
+            const u = document.getElementById('admin-username').value;
+            const p = document.getElementById('admin-password').value;
+            if (u === "svkadmin" && p === "svk@2026") {
                 document.getElementById('login-error').classList.add('hidden');
                 document.getElementById('admin-login-box').classList.add('hidden');
                 document.getElementById('admin-dashboard-box').classList.remove('hidden');
@@ -226,12 +536,47 @@
         }
 
         function updateNotice() {
-            const newNotice = document.getElementById('notice-input').value;
-            if(newNotice.trim() !== "") {
-                document.getElementById('live-notice-text').innerText = newNotice;
-                localStorage.setItem('svk_notice', newNotice);
-                alert("SVK दुकान का नोटिस लाइव अपडेट हो गया है!");
-                showSection('home-section');
+            const txt = document.getElementById('notice-input').value;
+            if(txt.trim() !== "") {
+                document.getElementById('live-notice-text').innerText = txt;
+                localStorage.setItem('svk_notice', txt);
+                alert("नोटिस अपडेट हो गया!");
+            }
+        }
+
+        function renderLeadsTable() {
+            const body = document.getElementById('leads-table-body');
+            const leads = JSON.parse(localStorage.getItem('svk_leads')) || [];
+            body.innerHTML = '';
+
+            if(leads.length === 0) {
+                body.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-500 font-light">अभी तक कोई ग्राहक ऑर्डर लीड प्राप्त नहीं हुई है।</td></tr>`;
+                return;
+            }
+
+            leads.reverse().forEach((lead) => {
+                let mapBtn = `<span class="text-slate-600 italic">No GPS</span>`;
+                if(lead.gps && lead.gps !== "") {
+                    mapBtn = `<a href="https://www.google.com/maps/dir/?api=1&destination=${lead.gps}" target="_blank" class="bg-emerald-500/20 text-emerald-400 font-semibold px-2.5 py-1 rounded border border-emerald-500/30 hover:bg-emerald-500 hover:text-slate-950 transition-all text-[11px]">📍 रास्ता देखें (Route)</a>`;
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-slate-800 hover:bg-slate-900/40 text-slate-300";
+                tr.innerHTML = `
+                    <td class="p-3 font-semibold text-white">${lead.name}</td>
+                    <td class="p-3 font-mono text-sky-400"><a href="tel:${lead.phone}">${lead.phone}</a></td>
+                    <td class="p-3 text-amber-400 font-medium">${lead.demands}</td>
+                    <td class="p-3 text-slate-400 text-xs">${lead.address}</td>
+                    <td class="p-3 text-center">${mapBtn}</td>
+                `;
+                body.appendChild(tr);
+            });
+        }
+
+        function clearAllLeads() {
+            if(confirm("क्या आप वाकई सभी ग्राहकों का प्राप्त डेटा डिलीट करना चाहते हैं?")) {
+                localStorage.removeItem('svk_leads');
+                renderLeadsTable();
             }
         }
     </script>
