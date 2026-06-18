@@ -26,11 +26,19 @@
 </head>
 <body>
 
-    <div id="welcome-page" class="fixed inset-0 bg-slate-950 z-50 flex flex-col justify-center items-center overflow-hidden">
-        <h1 class="text-2xl md:text-4xl font-bold text-red-500 mb-8 tracking-widest animate-pulse">
+    <div id="welcome-page" class="fixed inset-0 bg-slate-950 z-50 flex flex-col justify-center items-center overflow-hidden px-4">
+        <h1 id="welcome-shyam" class="text-2xl md:text-4xl font-bold text-red-500 mb-4 tracking-widest opacity-0 text-center">
             ❤️ JAI SHREE SHYAM ❤️
         </h1>
-        <div id="welcome-logo-container" class="w-48 h-48 rounded-2xl overflow-hidden bg-slate-800 flex items-center justify-center border border-slate-700 shadow-2xl opacity-0">
+        
+        <h2 id="welcome-group-text" class="text-xl md:text-3xl font-bold text-sky-400 mb-1 tracking-wide opacity-0 text-center uppercase">
+            WELCOME TO OUR GROUP
+        </h2>
+        <p id="welcome-happy-text" class="text-xs md:text-sm text-slate-400 mb-8 font-light opacity-0 text-center">
+            we are happy to see you 😊
+        </p>
+
+        <div id="welcome-logo-container" class="w-48 h-48 rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center border border-slate-800 shadow-2xl opacity-0">
             <img src="logo.png" alt="SVK Group Logo" class="w-full h-full object-cover" id="welcome-logo" onerror="this.onerror=null; this.parentElement.innerHTML='<span class="text-sky-400 font-bold text-xl">SVK GROUP</span>';">
         </div>
     </div>
@@ -41,7 +49,7 @@
         <div class="absolute bottom-[20%] right-[-10%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none"></div>
 
         <nav class="fixed top-0 left-0 w-full z-40 glass px-6 py-4 flex justify-between items-center shadow-lg">
-            <div class="text-2xl font-bold tracking-wider text-sky-400" id="main-logo">SVK GROUP</div>
+            <div class="text-2xl font-bold tracking-wider text-sky-400">SVK GROUP</div>
             <div class="flex space-x-6 font-medium text-sm md:text-base">
                 <button onclick="showSection('home-section')" class="hover:text-sky-400 transition-colors cursor-pointer">होम</button>
                 <button onclick="showSection('map-section')" class="hover:text-sky-400 transition-colors cursor-pointer">लोकेशन</button>
@@ -60,7 +68,7 @@
                 प्रीमियम एल्युमिनियम सेक्शन्स, टफन ग्लास वर्क और हाई-क्वालिटी हार्डवेयर सॉल्यूशन्स के लिए राजस्थान का भरोसेमंद नाम।
             </p>
 
-            <button onclick="showSection('map-section')" id="meet-us-btn" class="bg-gradient-to-r from-sky-500 to-blue-600 text-slate-900 font-bold px-10 py-4 rounded-xl shadow-lg shadow-sky-500/20 hover:opacity-90 transition-all cursor-pointer transform hover:scale-105 active:scale-95 opacity-0">
+            <button onclick="showSection('map-section')" id="meet-us-btn" class="bg-gradient-to-r from-sky-500 to-blue-600 text-slate-900 font-bold px-10 py-4 rounded-xl shadow-lg shadow-sky-500/20 hover:opacity-90 transition-all cursor-pointer transform scale-100 hover:scale-105 active:scale-95 opacity-0">
                 MEET US 📍
             </button>
 
@@ -94,7 +102,7 @@
 
         <section id="admin-section" class="hidden-page max-w-md mx-auto px-4 mt-12">
             <div id="admin-login-box" class="glass p-8 rounded-2xl shadow-2xl border border-slate-700">
-                <h2 class="text-2xl font-bold text-center text-sky-400 mb-6">दुकानदार लॉगिन (Admin)</h2>
+                <h2 class="text-2xl font-bold text-center text-sky-400 mb-6">दुकанदार लॉगिन (Admin)</h2>
                 <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">यूजरनेम</label>
@@ -127,25 +135,22 @@
                             सूचना अपडेट करें (Save Notice)
                         </button>
                     </div>
-                    <p class="text-xs text-slate-500 text-center">नोट: अभी यह बदलाव आपके इसी ब्राउज़र में सुरक्षित रहेगा।</p>
                 </div>
             </div>
         </section>
 
         <footer class="py-8 text-center text-xs text-slate-600 border-t border-slate-900 mt-24">
-            <p>&copy; 2026 SVK Group. All Rights Reserved.</p>
+            <p>© 2026 SVK Group. All Rights Reserved.</p>
         </footer>
     </div>
 
-    <button onclick="showSection('admin-section')" class="fixed bottom-6 right-6 w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-sky-400 shadow-xl border border-slate-700 hover:border-sky-500/50 transition-all z-50 cursor-pointer group" title="Admin Login">
+    <button onclick="showSection('admin-section')" class="fixed bottom-6 right-6 w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-sky-400 shadow-xl border border-slate-700 hover:border-sky-500/50 transition-all z-50 cursor-pointer group">
         🔒
-        <span class="absolute right-12 bg-slate-900 text-[10px] text-sky-400 px-2 py-1 rounded border border-slate-700 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">ADMIN PORTAL</span>
     </button>
 
     <script>
-        // 1. WELCOME PAGE ANIMATIONS WITH GSAP
-        window.addEventListener('DOMContentLoaded', () => {
-            // लोड होते ही लोकल स्टोरेज से पुरानी सेव की हुई सूचना लोड करें
+        window.addEventListener('load', () => {
+            // LocalStorage Notice Setup
             const savedNotice = localStorage.getItem('svk_notice');
             if (savedNotice) {
                 document.getElementById('live-notice-text').innerText = savedNotice;
@@ -154,107 +159,64 @@
                 document.getElementById('notice-input').value = document.getElementById('live-notice-text').innerText;
             }
 
-            const welcomeTimeline = gsap.timeline();
+            // GSAP Timeline for Perfect Welcome Page Sequence
+            const tl = gsap.timeline();
 
-            // लोगो कंटेनर को पहले विजिबल करें
-            welcomeTimeline.to("#welcome-logo-container", {
-                opacity: 1,
-                duration: 0.2
-            });
+            // 1. सबसे पहले टेक्स्ट सुंदर तरीके से धुंधलेपन से साफ होंगे (Fade In)
+            tl.to("#welcome-shyam", { opacity: 1, y: 10, duration: 0.6, ease: "power2.out" })
+              .to("#welcome-group-text", { opacity: 1, duration: 0.6 }, "-=0.3")
+              .to("#welcome-happy-text", { opacity: 1, duration: 0.5 }, "-=0.2");
 
-            // लोगो का जंपिंग और ब्राइटनेस एनिमेशन
-            welcomeTimeline.from("#welcome-logo-container", {
-                y: -150,
+            // 2. अब लोगो का डिब्बा ऊपर से बाउंस होता हुआ कूदेगा (Jumping Effect)
+            tl.to("#welcome-logo-container", { opacity: 1, duration: 0.1 })
+              .from("#welcome-logo-container", { y: -250, duration: 1.2, ease: "bounce.out" }, "-=0.1");
+
+            // 3. यहाँ लोगो स्टेबल होकर अपनी चमक (Brightness) बढ़ाएगा
+            tl.to("#welcome-logo", { filter: "brightness(1.7) contrast(1.1)", duration: 0.6 })
+              .to("#welcome-logo", { filter: "brightness(1.0) contrast(1.0)", duration: 0.6 });
+
+            // 4. पूरा वेलकम पेज अब स्मूथली ऊपर गायब हो जाएगा और होमपेज खुलेगा
+            tl.to("#welcome-page", {
                 opacity: 0,
-                duration: 1.2,
-                ease: "bounce.out"
-            });
-
-            welcomeTimeline.to("#welcome-logo", {
-                filter: "brightness(1.8) contrast(1.2)",
-                duration: 0.5,
-                yoyo: true,
-                repeat: 1
-            });
-
-            // स्वागत स्क्रीन को विदा करना और मुख्य वेबसाइट को दिखाना
-            welcomeTimeline.to("#welcome-page", {
-                opacity: 0,
-                y: -50,
+                y: -100,
                 duration: 0.8,
-                delay: 1.2,
+                delay: 0.8,
+                ease: "power3.inOut",
                 onComplete: () => {
                     document.getElementById('welcome-page').style.display = 'none';
                     const mainSite = document.getElementById('main-site');
                     mainSite.classList.remove('hidden-page');
-                    
-                    // होम पेज लोड होने का मुख्य एनिमेशन
                     triggerHomepageAnimations();
                 }
             });
         });
 
-        // 2. HOMEPAGE ANIMATION FUNCTION
         function triggerHomepageAnimations() {
-            gsap.to("#shop-title", {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                ease: "power4.out"
-            });
-
-            gsap.to("#shop-subtitle", {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                delay: 0.3,
-                ease: "power3.out"
-            });
-
-            gsap.to("#meet-us-btn", {
-                opacity: 1,
-                duration: 0.8,
-                delay: 0.6
-            });
+            gsap.fromTo("#shop-title", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 1.2, ease: "power4.out" });
+            gsap.fromTo("#shop-subtitle", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, "-=0.8");
+            gsap.fromTo("#meet-us-btn", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" }, "-=0.5");
         }
 
-        // 3. MULTI-PAGE NAVIGATION LOGIC
         function showSection(sectionId) {
-            // सभी सेक्शन्स को छुपाएं
             document.getElementById('home-section').classList.add('hidden-page');
             document.getElementById('map-section').classList.add('hidden-page');
             document.getElementById('admin-section').classList.add('hidden-page');
-
-            // चुने गए सेक्शन को दिखाएं
-            const targetSection = document.getElementById(sectionId);
-            targetSection.classList.remove('hidden-page');
-
-            // नया सेक्शन खोलते समय स्क्रीन को ऊपर स्क्रॉल करें
+            document.getElementById(sectionId).classList.remove('hidden-page');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // अगर होम पेज दोबारा खोला जाए तो एनिमेशन रीसेट कर सकते हैं
-            if (sectionId === 'home-section') {
-                gsap.fromTo("#shop-title", {y: 20}, {y: 0, duration: 0.5});
-            }
         }
 
-        // 4. ADMIN PORTAL AUTHENTICATION & LOGIN LOGIC
         function handleLogin() {
             const uInput = document.getElementById('admin-username').value;
             const pInput = document.getElementById('admin-password').value;
-            const errorText = document.getElementById('login-error');
-
-            // यहाँ आपका क्रेडेंशियल सेट है
             if (uInput === "svkadmin" && pInput === "svk@2026") {
-                errorText.classList.add('hidden');
+                document.getElementById('login-error').classList.add('hidden');
                 document.getElementById('admin-login-box').classList.add('hidden');
                 document.getElementById('admin-dashboard-box').classList.remove('hidden');
             } else {
-                errorText.classList.remove('hidden');
+                document.getElementById('login-error').classList.remove('hidden');
             }
         }
 
-        // LOGOUT LOGIC
         function handleLogout() {
             document.getElementById('admin-username').value = "";
             document.getElementById('admin-password').value = "";
@@ -263,18 +225,13 @@
             showSection('home-section');
         }
 
-        // UPDATE SHOP NOTICE FROM DASHBOARD
         function updateNotice() {
             const newNotice = document.getElementById('notice-input').value;
             if(newNotice.trim() !== "") {
-                // लाइव स्क्रीन पर टेक्स्ट बदलें
                 document.getElementById('live-notice-text').innerText = newNotice;
-                // लोकल स्टोरेज में सेव करें ताकि पेज रिफ्रेश होने पर भी न बदले
                 localStorage.setItem('svk_notice', newNotice);
-                alert("बधाई हो! SVK दुकान का नोटिस अपडेट हो गया है।");
+                alert("SVK दुकान का नोटिस लाइव अपडेट हो गया है!");
                 showSection('home-section');
-            } else {
-                alert("कृपया नोटिस में कुछ टेक्स्ट लिखें!");
             }
         }
     </script>
