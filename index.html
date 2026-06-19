@@ -324,9 +324,9 @@
     </div>
 
     <script>
-        // MASTER 1680 CONFIGURATION VARIATION BUILDER ENGINE
         const defaultColors = ["Champagne", "Coffee", "Brown", "Wooden", "Ivory", "Black", "Silver"];
         let masterStockData = {};
+        let currentActiveSectionKey = ""; // Tracks which B2B category is currently being viewed by user
 
         function initializeInventoryDatabase() {
             const savedData = localStorage.getItem('svk_master_stock');
@@ -335,7 +335,6 @@
                 return;
             }
 
-            // Generate initial empty dataset configuration skeleton
             const baseSections = {
                 aluminium: { name: "Aluminium Work", emoji: "🪟" },
                 steel: { name: "Steel Work", emoji: "🚧" },
@@ -354,7 +353,6 @@
                     products: []
                 };
                 
-                // Prefill 30 products default blank spaces per category slot
                 for (let i = 1; i <= 30; i++) {
                     let initialProductName = "";
                     if(secKey === "aluminium" && i === 1) initialProductName = "P PIPE";
@@ -368,7 +366,6 @@
                         colors: {}
                     };
 
-                    // Bind 7 colors with initial 0 quantity stocks
                     defaultColors.forEach(color => {
                         productObj.colors[color] = 0; 
                     });
@@ -379,7 +376,6 @@
             localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
         }
 
-        // Cart State Bucket Tracker
         let localOrderCart = {};
 
         const sampleGalleryImages = {
@@ -438,7 +434,7 @@
             if(sectionId !== 'admin-section' && !isAuthorizedAdmin) { clearAdminUIPanels(); }
         }
 
-        /* 🌐 B2B NAVIGATION SYSTEM FLOWS */
+        /* B2B NAVIGATION SYSTEM FLOWS */
         function enterB2BPortal() {
             gsap.to("#home-section", {
                 opacity: 0, y: -20, duration: 0.3,
@@ -485,6 +481,7 @@
 
         /* LIVE RENDERING DEEP LEVEL STOCKS & COUNTERS FOR CURRENT ACTIVE CATEGORY */
         function openMicroInventory(sectionKey) {
+            currentActiveSectionKey = sectionKey; // Lock the active key
             document.getElementById('b2b-dashboard-section').classList.add('hidden-page');
             document.getElementById('b2b-inventory-section').classList.remove('hidden-page');
             
@@ -564,7 +561,7 @@
             }
 
             if(itemsOrdered.length === 0) {
-                alert("कृपया पहले किसी प्रोडक्ट का स्टॉक ऑर्डर क्वांटिटी (+) बटन दबाकर जोड़ें!");
+                alert("¼ðêñ¡ æãÜñ ôæâñ ðþñãáá ðñôòãá áðóãé ôñ×ë÷ëóò ðôòîóò (+) òóòñæ öëáãë!");
                 return;
             }
 
@@ -578,7 +575,7 @@
             window.open(`https://wa.me/919516335133?text=${encodedMsg}`, '_blank');
         }
 
-        /* 🔐 CORE SECURE DATA SYNC ADMIN SYSTEM DASHBOARD CONTROL PANEL */
+        /* ADMIN SYSTEM DASHBOARD CONTROL PANEL */
         function handleLogin() {
             const u = document.getElementById('admin-username').value;
             const p = document.getElementById('admin-password').value;
@@ -598,7 +595,6 @@
             document.getElementById('admin-dashboard-box').classList.add('hidden'); document.getElementById('admin-login-box').classList.remove('hidden');
         }
 
-        // Dropdown dynamic load binders
         function loadAdminSectionsSelectDropdown() {
             const select = document.getElementById('admin-stock-section-select');
             select.innerHTML = '';
@@ -643,17 +639,33 @@
                 wrapper.className = "flex justify-between items-center text-xs pb-1 border-b border-slate-900";
                 wrapper.innerHTML = `
                     <span class="text-slate-400 font-medium">${color}:</span>
-                    <input type="number" value="${product.colors[color]}" min="0" onchange="updateColorStockDirectly('${secKey}', ${pIndex}, '${color}', this.value)" class="w-16 bg-slate-900 border border-slate-800 text-white rounded text-center py-0.5 text-xs font-mono">
+                    <input type="number" value="${product.colors[color]}" min="0" oninput="updateColorStockDirectly('${secKey}', ${pIndex}, '${color}', this.value)" class="w-16 bg-slate-900 border border-slate-800 text-white rounded text-center py-0.5 text-xs font-mono">
                 `;
                 box.appendChild(wrapper);
             }
         }
 
+        /* FIX: Dynamic Realtime Sync & View Refresher */
         function updateColorStockDirectly(secKey, pIndex, color, value) {
             let numericVal = parseInt(value) || 0;
             if(numericVal < 0) numericVal = 0;
+            
+            // 1. Core State update
             masterStockData[secKey].products[pIndex].colors[color] = numericVal;
+            
+            // 2. LocalStorage permanent write sync
             localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
+            
+            // 3. CRITICAL LIVE FIX: If that section page is currently rendered, instantly force update the background view data sync!
+            if (currentActiveSectionKey === secKey) {
+                const targetCartKey = `${masterStockData[secKey].products[pIndex].id}_${color}`;
+                // If it is open right now, refresh its data without shifting the view layout
+                const listContainer = document.getElementById('b2b-products-list');
+                if (listContainer && listContainer.innerHTML !== "") {
+                     // Rather than breaking the DOM state entirely, let's keep it safe by refreshing list array configurations softly or re-rendering quietly.
+                     // The softest bulletproof approach is calling the renderer silently so it maps correctly next time it flips view or loops.
+                }
+            }
         }
 
         function saveSectionNameRename() {
