@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVK Group - Aluminium, Steel & Glass</title>
+    <title>SVK Group - Aluminium, Steel & Glass,RINGAS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
@@ -620,7 +620,7 @@
                 option.innerText = p.name || `Product ${index + 1}`;
                 pSelect.appendChild(option);
             });
-            loadAdminColorsPanel();
+            function loadAdminColorsPanel() {     const secKey = document.getElementById('admin-stock-section-select').value;     const pIndex = document.getElementById('admin-stock-product-select').value;     if(pIndex === "") return;          const product = masterStockData[secKey].products[pIndex];     document.getElementById('admin-edit-product-name').value = product.name;      const box = document.getElementById('admin-colors-stock-box');     box.innerHTML = '';      // हर कलर के आगे उसका इनपुट बॉक्स बनाएंगे     for(let color in product.colors) {         const wrapper = document.createElement('div');         wrapper.className = "flex justify-between items-center text-xs pb-1 border-b border-slate-900";         wrapper.innerHTML = `             <span class="text-slate-400 font-medium">${color}:</span>             <input type="number" id="stock-input-${color}" value="${product.colors[color]}" min="0" class="w-16 bg-slate-900 border border-slate-800 text-white rounded text-center py-0.5 text-xs font-mono">         `;         box.appendChild(wrapper);     }      // यहाँ हमने नीचे एक कड़क "SAVE ALL STOCKS" बटन जोड़ दिया है!     const btnWrapper = document.createElement('div');     btnWrapper.className = "pt-2";     btnWrapper.innerHTML = `         <button onclick="saveAllColorsStock('${secKey}', ${pIndex})" class="w-full bg-emerald-500 text-slate-950 font-bold py-1.5 rounded text-[11px] uppercase tracking-wide">             💾 Save All Stocks         </button>     `;     box.appendChild(btnWrapper); }  // यह नया फंक्शन बटन दबाते ही सारा स्टॉक एक साथ सेव और अपडेट कर देगा function saveAllColorsStock(secKey, pIndex) {     const product = masterStockData[secKey].products[pIndex];          for(let color in product.colors) {         const inputElement = document.getElementById(`stock-input-${color}`);         if(inputElement) {             let numericVal = parseInt(inputElement.value) || 0;             if(numericVal < 0) numericVal = 0;             product.colors[color] = numericVal;         }     }          // लोकल स्टोरेज में सेव करें     localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));          // अगर B2B पेज खुला है तो उसे तुरंत नया डेटा दिखाएं     if (currentActiveSectionKey === secKey) {         openMicroInventory(secKey);     }          alert("✅ सभी रंगों का स्टॉक सफलतापूर्वक अपडेट हो गया !"); }();
         }
 
         function loadAdminColorsPanel() {
