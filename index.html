@@ -700,7 +700,7 @@
             let imageArray = sampleGalleryImages[type];
 
             imageArray.forEach((placeholderUrl, index) => {
-                const fileName = `${currentPrefix}${index + 1}.webp`;
+                const fileName = `${currentPrefix}${index + 1}.png`;
                 const card = document.createElement('div');
                 card.className = "bg-slate-900 rounded-lg overflow-hidden border border-slate-800 opacity-0 transform translate-y-3 gallery-img-card";
                 card.innerHTML = `
