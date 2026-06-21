@@ -19,11 +19,6 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7) !important;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
         .hidden-page { display: none !important; }
         
         /* Neon Lighting Border Glow Effects */
@@ -63,16 +58,69 @@
         .inner-neon-btn { background-color: #0f172a; transition: all 0.2s ease; }
         .inner-neon-btn:active { background-color: #1e293b; transform: scale(0.98); }
         .glass-panel { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.05); }
+
+        /* RGB Running Light Effect for Owners */
+        .rgb-border-wrap {
+            position: relative;
+            padding: 4px;
+            border-radius: 50%;
+            background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+            background-size: 300% 300%;
+            animation: animatedgradient 3s ease alternate infinite;
+        }
+        @keyframes animatedgradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Shop Photo Slider */
+        .shop-slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 12px;
+            padding-bottom: 10px;
+        }
+        .shop-slider-container::-webkit-scrollbar { height: 6px; }
+        .shop-slider-container::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 4px; }
+        .shop-slide {
+            scroll-snap-align: center;
+            flex: 0 0 85%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #1e293b;
+        }
+
+        /* Live Rate Ticker */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: ticker 15s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
     </style>
 </head>
 <body class="bg-[#0f172a] text-[#f8fafc]">
 
-    <div id="welcome-page" class="fixed inset-0 bg-[#05050a] z-50 flex flex-col justify-center items-center overflow-hidden px-4">
+    <div id="welcome-page" class="fixed inset-0 bg-[#05050a] z-[60] flex flex-col justify-center items-center overflow-hidden px-4">
         <h1 id="welcome-shyam" class="text-xl md:text-3xl font-bold text-red-500 mb-3 tracking-widest opacity-0 text-center">❤️ JAI SHREE SHYAM ❤️</h1>
-        <h2 id="welcome-group-text" class="text-lg md:text-2xl font-bold text-sky-400 mb-1 tracking-wide opacity-0 text-center uppercase">WELCOME TO OUR GROUP</h2>
+        <h2 id="welcome-group-text" class="text-lg md:text-2xl font-bold text-sky-400 mb-1 tracking-wide opacity-0 text-center uppercase">WELCOME TO SVK RINGAS (332404)</h2>
         <p id="welcome-happy-text" class="text-[11px] md:text-xs text-slate-400 mb-6 font-light opacity-0 text-center">we are happy to see you 😊</p>
         <div id="welcome-logo-container" class="w-32 h-32 md:w-44 md:h-44 rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center border border-slate-800 shadow-2xl opacity-0">
-            <img src="logo.png" alt="SVK Group Logo" class="w-full h-full object-cover" id="welcome-logo" onerror="this.onerror=null; this.parentElement.innerHTML='<span class="text-sky-400 font-bold text-lg">SVK GROUP</span>';">
+            <img src="logo.png" alt="SVK Group Logo" class="w-full h-full object-cover" id="welcome-logo" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'text-sky-400 font-bold text-lg\'>SVK GROUP</span>';">
         </div>
     </div>
 
@@ -80,10 +128,10 @@
         
         <nav id="main-navbar" class="fixed top-0 left-0 w-full z-40 glass-nav px-4 py-3 flex justify-between items-center shadow-xl">
             <div onclick="showSection('home-section')" class="text-lg md:text-2xl font-bold tracking-wider text-sky-400 cursor-pointer">SVK GROUP</div>
-            <div class="flex space-x-2 md:space-x-4 font-semibold text-xs md:text-sm">
-                <button onclick="showSection('home-section')" class="bg-slate-800/80 hover:bg-slate-700 px-3 py-1.5 rounded-lg text-slate-200 transition-colors">होम</button>
-                <button onclick="showSection('order-section')" class="bg-emerald-600/20 hover:bg-emerald-600/40 text-emerald-400 px-3 py-1.5 rounded-lg border border-emerald-500/30 transition-colors">ऑर्डर फॉर्म</button>
-                <button onclick="showSection('map-section')" class="bg-slate-800/80 hover:bg-slate-700 px-3 py-1.5 rounded-lg text-slate-200 transition-colors">लोकेशन</button>
+            <div class="flex space-x-2 font-semibold text-[10px] md:text-sm">
+                <button onclick="showSection('home-section')" class="bg-slate-800/80 hover:bg-slate-700 px-2.5 py-1.5 rounded-lg text-slate-200 transition-colors">होम</button>
+                <button onclick="showSection('order-section')" class="bg-emerald-600/20 hover:bg-emerald-600/40 text-emerald-400 px-2.5 py-1.5 rounded-lg border border-emerald-500/30 transition-colors">ऑर्डर</button>
+                <button onclick="openConnectUsModal()" class="bg-gradient-to-r from-fuchsia-600 to-purple-600 px-2.5 py-1.5 rounded-lg text-white animate-pulse shadow-lg shadow-fuchsia-500/30">Connect Us</button>
             </div>
         </nav>
 
@@ -95,7 +143,7 @@
             </div>
             
             <div class="w-full max-w-md running-neon-wrapper mb-8 transform transition-all duration-300 hover:scale-[1.01]">
-                <button onclick="enterB2BPortal()" class="inner-neon-btn w-full py-4 rounded-[14px] text-center cursor-pointer flex flex-col items-center justify-center">
+                <button onclick="triggerB2BEntry()" class="inner-neon-btn w-full py-4 rounded-[14px] text-center cursor-pointer flex flex-col items-center justify-center">
                     <span class="text-base md:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-teal-300 tracking-wide uppercase">
                         SVK B2B SHOPKEEPER PORTAL 🌐
                     </span>
@@ -138,6 +186,17 @@
         </section>
 
         <section id="b2b-dashboard-section" class="hidden-page max-w-4xl mx-auto px-4 mt-2">
+            <div class="mb-4">
+                <div class="text-[10px] text-emerald-400 font-bold mb-1 uppercase tracking-wider">LIVE MARKET RATES 📈</div>
+                <div class="ticker-wrap p-2 shadow-inner">
+                    <div class="ticker text-xs font-semibold text-white">
+                        <span class="mx-4">🪟 Aluminium: <span id="ticker-alu" class="text-sky-400">Loading...</span></span> | 
+                        <span class="mx-4">🚧 Steel: <span id="ticker-steel" class="text-teal-400">Loading...</span></span> | 
+                        <span class="mx-4">💎 Glass: <span id="ticker-glass" class="text-fuchsia-400">Loading...</span></span>
+                    </div>
+                </div>
+            </div>
+
             <div class="flex justify-between items-center mb-6 pb-3 border-b border-slate-800">
                 <div>
                     <h2 class="text-xl font-bold text-sky-400">SVK थोक स्टॉक डिस्ट्रीब्यूशन</h2>
@@ -146,8 +205,7 @@
                 <button onclick="exitB2BPortal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-semibold">← बैक मुख्य होम</button>
             </div>
 
-            <div id="b2b-categories-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                </div>
+            <div id="b2b-categories-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
         </section>
 
         <section id="b2b-inventory-section" class="hidden-page max-w-4xl mx-auto px-4 mt-2">
@@ -159,8 +217,7 @@
                 <button onclick="showB2BDashboard()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-semibold">← बैक केटेगरी</button>
             </div>
 
-            <div id="b2b-products-list" class="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
-                </div>
+            <div id="b2b-products-list" class="space-y-4 max-h-[60vh] overflow-y-auto pr-2"></div>
 
             <div class="mt-6 p-4 bg-slate-900 rounded-xl border border-teal-500/20 flex flex-col sm:flex-row justify-between items-center gap-3">
                 <div class="text-sm font-semibold text-slate-200">
@@ -175,7 +232,7 @@
         <section id="gallery-section" class="hidden-page max-w-4xl mx-auto px-3 mt-2">
             <div class="animated-stripe h-2.5 w-full rounded-t-xl mb-4"></div>
             <div class="text-center mb-6">
-                <h2 id="gallery-title" class="text-lg md:text-2xl font-bold text-sky-400 uppercase tracking-wider">Gallery</h2>
+                <h2 id="gallery-title" class="text-lg md:text-2xl font-bold text-sky-400 uppercase tracking-wider">Premium Gallery</h2>
             </div>
             <div id="photos-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
             <div class="text-center mt-6">
@@ -205,7 +262,7 @@
                     </div>
                     <div class="space-y-2">
                         <button type="button" onclick="getLiveGPSLocation()" class="w-full bg-blue-600/20 border border-blue-500/40 text-blue-400 font-bold py-2 rounded-lg text-xs">📍 SHARE LIVE LOCATION</button>
-                        <p id="gps-status" class="text-[10px] text-emerald-400 font-medium text-center hidden">✓ लोकेशन सुरक्षित रूप से जोड़ दी गई है!</p>
+                        <p id="gps-status" class="text-[10px] text-emerald-400 font-medium text-center hidden">✓ लोकेशन सुरक्षित रूप से जोड़ दी गई है!</p>
                         <input type="hidden" id="cust-gps" value="">
                         <div class="grid grid-cols-2 gap-2">
                             <input type="text" id="cust-village" required placeholder="गांव/कस्बा" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white">
@@ -240,31 +297,24 @@
             
             <div id="admin-dashboard-box" class="space-y-6 hidden">
                 
-                <div class="bg-slate-900/90 p-4 rounded-xl border border-emerald-500/20 shadow-2xl">
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-4 gap-2">
-                        <h2 class="text-base font-bold text-emerald-400">SVK ग्राहक डेटा लीड्स 📈</h2>
-                        <div class="flex space-x-2">
-                            <button onclick="clearAllLeads()" class="text-[10px] bg-red-500/10 text-red-400 px-2.5 py-1 rounded border border-red-500/20">डेटा क्लियर</button>
-                            <button onclick="handleLogout()" class="text-[10px] bg-slate-800 text-slate-300 px-3 py-1 rounded">लॉगआउट</button>
+                <div class="bg-slate-900/90 p-4 rounded-xl border border-fuchsia-500/20 shadow-2xl">
+                    <h2 class="text-base font-bold text-fuchsia-400 mb-2">📊 डेली मार्केट रेट अपडेट</h2>
+                    <p class="text-[10px] text-slate-400 mb-3">B2B ग्राहकों को दिखने वाले लाइव रेट्स यहाँ से बदलें:</p>
+                    <div class="flex gap-2 mb-3">
+                        <div class="flex-1">
+                            <label class="text-[10px] text-slate-300">Aluminium (₹/Kg)</label>
+                            <input type="text" id="admin-rate-alu" class="w-full bg-slate-950 border border-slate-800 rounded p-1.5 text-white text-xs">
+                        </div>
+                        <div class="flex-1">
+                            <label class="text-[10px] text-slate-300">Steel (₹/Kg)</label>
+                            <input type="text" id="admin-rate-steel" class="w-full bg-slate-950 border border-slate-800 rounded p-1.5 text-white text-xs">
+                        </div>
+                        <div class="flex-1">
+                            <label class="text-[10px] text-slate-300">Glass (₹/Sq.Ft)</label>
+                            <input type="text" id="admin-rate-glass" class="w-full bg-slate-950 border border-slate-800 rounded p-1.5 text-white text-xs">
                         </div>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-4">
-                        <label class="block text-[11px] font-semibold text-slate-300 mb-1">लाइव सूचना पट्टी टेक्स्ट बदलें:</label>
-                        <div class="flex gap-2">
-                            <input type="text" id="notice-input" class="flex-1 bg-slate-900 border border-slate-800 rounded-lg p-1.5 text-white text-xs">
-                            <button onclick="updateNotice()" class="bg-emerald-500 text-slate-950 font-bold px-3 rounded-lg text-[11px]">अपडेट</button>
-                        </div>
-                    </div>
-                    <div class="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950">
-                        <table class="w-full text-left border-collapse text-xs">
-                            <thead>
-                                <tr class="bg-slate-900 text-slate-300 border-b border-slate-800">
-                                    <th class="p-2.5">नाम</th><th class="p-2.5">मोबाइल</th><th class="p-2.5">मांग</th><th class="p-2.5">साइट पता</th><th class="p-2.5 text-center">मैप</th>
-                                </tr>
-                            </thead>
-                            <tbody id="leads-table-body"></tbody>
-                        </table>
-                    </div>
+                    <button onclick="saveAdminRates()" class="bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-[11px] font-bold px-4 py-1.5 rounded shadow">रेट्स अपडेट करें</button>
                 </div>
 
                 <div class="bg-slate-900/90 p-4 rounded-xl border border-sky-500/20 shadow-2xl">
@@ -299,8 +349,44 @@
                         <div>
                             <label class="block text-[11px] text-slate-400 mb-1 font-semibold">3. रंगों का स्टॉक सेट करें (Pcs में):</label>
                             <div id="admin-colors-stock-box" class="space-y-2 max-h-48 overflow-y-auto bg-slate-950 border border-slate-800 rounded-lg p-2">
-                                </div>
+                            </div>
+                            <button onclick="saveAllColorStocks()" class="w-full mt-3 bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold py-2 rounded shadow-lg shadow-emerald-500/20 transition-all uppercase tracking-wider">
+                                ✅ स्टॉक अपडेट करें
+                            </button>
                         </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/90 p-4 rounded-xl border border-emerald-500/20 shadow-2xl">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-4 gap-2">
+                        <h2 class="text-base font-bold text-emerald-400">SVK ग्राहक डेटा लीड्स 📈</h2>
+                        <div class="flex space-x-2">
+                            <button onclick="clearAllLeads()" class="text-[10px] bg-red-500/10 text-red-400 px-2.5 py-1 rounded border border-red-500/20">डेटा क्लियर</button>
+                            <button onclick="handleLogout()" class="text-[10px] bg-slate-800 text-slate-300 px-3 py-1 rounded">लॉगआउट</button>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-4">
+                        <label class="block text-[11px] font-semibold text-slate-300 mb-1">लाइव सूचना पट्टी टेक्स्ट बदलें:</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="notice-input" class="flex-1 bg-slate-900 border border-slate-800 rounded-lg p-1.5 text-white text-xs">
+                            <button onclick="updateNotice()" class="bg-emerald-500 text-slate-950 font-bold px-3 rounded-lg text-[11px]">अपडेट</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-2 text-xs font-bold text-sky-400 mt-4 border-b border-slate-800 pb-1">B2B Wholesale Customers</div>
+                    <div class="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 mb-4">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead><tr class="bg-slate-900 text-slate-300 border-b border-slate-800"><th class="p-2.5">दुकान का नाम</th><th class="p-2.5">मोबाइल</th></tr></thead>
+                            <tbody id="b2b-customers-table-body"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="mb-2 text-xs font-bold text-emerald-400 border-b border-slate-800 pb-1">Normal Customers Orders</div>
+                    <div class="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead><tr class="bg-slate-900 text-slate-300 border-b border-slate-800"><th class="p-2.5">नाम</th><th class="p-2.5">मोबाइल</th><th class="p-2.5">मांग</th><th class="p-2.5">साइट पता</th><th class="p-2.5 text-center">मैप</th></tr></thead>
+                            <tbody id="leads-table-body"></tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -323,10 +409,72 @@
         </div>
     </div>
 
+    <div id="connect-us-modal" class="fixed inset-0 bg-black/90 z-[55] hidden justify-center items-center p-4 overflow-y-auto">
+        <div class="bg-slate-900 w-full max-w-md rounded-2xl border border-fuchsia-500/30 p-5 relative my-8">
+            <button onclick="closeConnectUsModal()" class="absolute top-3 right-3 w-8 h-8 bg-slate-800 rounded-full text-white font-bold flex items-center justify-center">X</button>
+            <h2 class="text-xl font-bold text-center text-fuchsia-400 mb-6 tracking-widest uppercase">Business Owners</h2>
+            
+            <div class="flex flex-col gap-6 mb-8">
+                <div class="owner-card flex items-center bg-slate-950/80 p-3 rounded-xl border border-slate-800 shadow-xl">
+                    <div class="w-20 h-20 rgb-border-wrap shrink-0">
+                        <img src="mahesh.webp" alt="Mahesh Yadav" class="w-full h-full rounded-full object-cover border-2 border-slate-900" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mahesh+Yadav&background=0D8ABC&color=fff';">
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-bold text-sky-400">Mr. Mahesh Yadav</h3>
+                        <p class="text-xs text-slate-400 mb-1">Founder & Director</p>
+                        <a href="tel:9983092600" class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded inline-block border border-emerald-500/20">📞 9983092600</a>
+                    </div>
+                </div>
+                <div class="owner-card flex items-center bg-slate-950/80 p-3 rounded-xl border border-slate-800 shadow-xl">
+                    <div class="w-20 h-20 rgb-border-wrap shrink-0">
+                        <img src="rajesh.webp" alt="Rajesh Yadav" class="w-full h-full rounded-full object-cover border-2 border-slate-900" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Rajesh+Yadav&background=8B5CF6&color=fff';">
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-bold text-sky-400">Mr. Rajesh Yadav</h3>
+                        <p class="text-xs text-slate-400 mb-1">Co-Founder & Manager</p>
+                        <a href="tel:7737285859" class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded inline-block border border-emerald-500/20">📞 7737285859</a>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="toggleShopGallery()" class="w-full bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold py-3 rounded-xl text-sm uppercase shadow-lg mb-4">
+                🏪 VIEW OUR SHOP 🏪
+            </button>
+            
+            <div id="shop-gallery-box" class="hidden">
+                <div class="shop-slider-container">
+                    <img src="shop1.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=101'">
+                    <img src="shop2.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=102'">
+                    <img src="shop3.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=103'">
+                    <img src="shop4.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=104'">
+                    <img src="shop5.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=105'">
+                </div>
+                <p class="text-center text-[9px] text-slate-500 mt-2">स्वाइप करके तस्वीरें देखें 👈👉</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="b2b-entry-modal" class="fixed inset-0 bg-black/90 z-50 hidden justify-center items-center p-4">
+        <div class="bg-slate-900 p-6 rounded-xl max-w-sm w-full border border-sky-500/30" id="b2b-entry-card">
+            <h2 class="text-lg font-bold text-sky-400 mb-2">दुकानदार वेरिफिकेशन</h2>
+            <p class="text-[10px] text-slate-400 mb-4">लाइव स्टॉक और रेट्स देखने के लिए अपनी दुकान की जानकारी दें:</p>
+            <div class="space-y-3">
+                <input type="text" id="b2b-shop-name" placeholder="आपकी दुकान का नाम" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white">
+                <input type="tel" id="b2b-shop-phone" placeholder="दुकानदार का मोबाइल नंबर" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white">
+                <p id="b2b-entry-error" class="text-red-500 text-[10px] hidden">कृपया दोनों बॉक्स भरें!</p>
+                <button onclick="submitB2BEntry()" class="w-full bg-sky-500 text-slate-950 font-bold py-2 rounded-lg text-xs mt-2">प्रवेश करें (Enter) ➔</button>
+                <button onclick="closeB2BEntryModal()" class="w-full bg-slate-800 text-slate-400 py-1.5 rounded-lg text-xs mt-1">रद्द करें (Cancel)</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // MASTER CONFIGURATION ENGINE
         const defaultColors = ["Champagne", "Coffee", "Brown", "Wooden", "Ivory", "Black", "Silver"];
         let masterStockData = {};
-        let currentActiveSectionKey = ""; // Tracks which B2B category is currently being viewed by user
+        let localOrderCart = {};
+        let isAuthorizedAdmin = false;
+        let currentB2BUser = { shop: "", phone: "" };
 
         function initializeInventoryDatabase() {
             const savedData = localStorage.getItem('svk_master_stock');
@@ -360,35 +508,19 @@
                     else if(secKey === "aluminium" && i === 3) initialProductName = "CENTRE PIPE";
                     else initialProductName = `Product ${i} (Blank)`;
 
-                    let productObj = {
-                        id: `prod_${secKey}_${i}`,
-                        name: initialProductName,
-                        colors: {}
-                    };
-
-                    defaultColors.forEach(color => {
-                        productObj.colors[color] = 0; 
-                    });
-
+                    let productObj = { id: `prod_${secKey}_${i}`, name: initialProductName, colors: {} };
+                    defaultColors.forEach(color => { productObj.colors[color] = 0; });
                     masterStockData[secKey].products.push(productObj);
                 }
             }
             localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
         }
 
-        let localOrderCart = {};
-
-        const sampleGalleryImages = {
-            aluminium: ['https://picsum.photos/600/400?random=1', 'https://picsum.photos/600/400?random=2', 'https://picsum.photos/600/400?random=3'],
-            glass: ['https://picsum.photos/600/400?random=11', 'https://picsum.photos/600/400?random=12'],
-            steel: ['https://picsum.photos/600/400?random=21', 'https://picsum.photos/600/400?random=22']
-        };
-
-        let isAuthorizedAdmin = false;
-
+        // INIT LOAD
         window.addEventListener('load', () => {
             initializeInventoryDatabase();
             renderB2BCategoriesGrid();
+            loadLiveMarketRates();
 
             const savedNotice = localStorage.getItem('svk_notice');
             if (savedNotice) {
@@ -396,6 +528,7 @@
                 document.getElementById('notice-input').value = savedNotice;
             }
 
+            // Welcome Page GSAP Anim
             const tl = gsap.timeline();
             tl.to("#welcome-shyam", { opacity: 1, y: 5, duration: 0.5 })
               .to("#welcome-group-text", { opacity: 1, duration: 0.5 }, "-=0.2")
@@ -419,14 +552,7 @@
         }
 
         function showSection(sectionId) {
-            document.getElementById('home-section').classList.add('hidden-page');
-            document.getElementById('b2b-dashboard-section').classList.add('hidden-page');
-            document.getElementById('b2b-inventory-section').classList.add('hidden-page');
-            document.getElementById('gallery-section').classList.add('hidden-page');
-            document.getElementById('order-section').classList.add('hidden-page');
-            document.getElementById('map-section').classList.add('hidden-page');
-            document.getElementById('admin-section').classList.add('hidden-page');
-            
+            document.querySelectorAll('#main-site > section').forEach(sec => sec.classList.add('hidden-page'));
             document.getElementById(sectionId).classList.remove('hidden-page');
             document.getElementById('main-navbar').classList.remove('hidden-page');
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -434,7 +560,66 @@
             if(sectionId !== 'admin-section' && !isAuthorizedAdmin) { clearAdminUIPanels(); }
         }
 
-        /* B2B NAVIGATION SYSTEM FLOWS */
+        /* 🆕 CONNECT US MODAL FUNCTIONS */
+        function openConnectUsModal() {
+            document.getElementById('connect-us-modal').style.display = 'flex';
+            gsap.from(".owner-card", { y: 50, rotationY: 180, opacity: 0, duration: 0.8, stagger: 0.2, ease: "back.out(1.5)" });
+        }
+        function closeConnectUsModal() {
+            document.getElementById('connect-us-modal').style.display = 'none';
+            document.getElementById('shop-gallery-box').classList.add('hidden');
+        }
+        function toggleShopGallery() {
+            const box = document.getElementById('shop-gallery-box');
+            if(box.classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                gsap.from(".shop-slider-container", {opacity: 0, height: 0, duration: 0.5});
+            } else { box.classList.add('hidden'); }
+        }
+
+        /* 🆕 B2B ENTRY & RATES LOGIC */
+        function loadLiveMarketRates() {
+            const rates = JSON.parse(localStorage.getItem('svk_live_rates')) || { alu: "...", steel: "...", glass: "..." };
+            document.getElementById('ticker-alu').innerText = `₹${rates.alu}/Kg`;
+            document.getElementById('ticker-steel').innerText = `₹${rates.steel}/Kg`;
+            document.getElementById('ticker-glass').innerText = `₹${rates.glass}/Sq.Ft`;
+            
+            // prefill admin
+            document.getElementById('admin-rate-alu').value = rates.alu !== "..." ? rates.alu : "";
+            document.getElementById('admin-rate-steel').value = rates.steel !== "..." ? rates.steel : "";
+            document.getElementById('admin-rate-glass').value = rates.glass !== "..." ? rates.glass : "";
+        }
+        function saveAdminRates() {
+            const alu = document.getElementById('admin-rate-alu').value;
+            const steel = document.getElementById('admin-rate-steel').value;
+            const glass = document.getElementById('admin-rate-glass').value;
+            localStorage.setItem('svk_live_rates', JSON.stringify({alu, steel, glass}));
+            loadLiveMarketRates();
+            alert("रेट्स लाइव अपडेट कर दिए गए हैं!");
+        }
+
+        function triggerB2BEntry() {
+            document.getElementById('b2b-entry-modal').style.display = 'flex';
+            gsap.fromTo("#b2b-entry-card", {scale: 0.8, opacity: 0}, {scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.5)"});
+        }
+        function closeB2BEntryModal() { document.getElementById('b2b-entry-modal').style.display = 'none'; }
+        
+        function submitB2BEntry() {
+            const shop = document.getElementById('b2b-shop-name').value.trim();
+            const phone = document.getElementById('b2b-shop-phone').value.trim();
+            if(!shop || !phone) { document.getElementById('b2b-entry-error').classList.remove('hidden'); return; }
+            
+            currentB2BUser = { shop, phone };
+            
+            // Save to admin leads
+            let b2bList = JSON.parse(localStorage.getItem('svk_b2b_leads')) || [];
+            if(!b2bList.some(user => user.phone === phone)) { b2bList.push(currentB2BUser); }
+            localStorage.setItem('svk_b2b_leads', JSON.stringify(b2bList));
+
+            closeB2BEntryModal();
+            enterB2BPortal();
+        }
+
         function enterB2BPortal() {
             gsap.to("#home-section", {
                 opacity: 0, y: -20, duration: 0.3,
@@ -479,9 +664,7 @@
             }
         }
 
-        /* LIVE RENDERING DEEP LEVEL STOCKS & COUNTERS FOR CURRENT ACTIVE CATEGORY */
         function openMicroInventory(sectionKey) {
-            currentActiveSectionKey = sectionKey; // Lock the active key
             document.getElementById('b2b-dashboard-section').classList.add('hidden-page');
             document.getElementById('b2b-inventory-section').classList.remove('hidden-page');
             
@@ -496,13 +679,11 @@
                 pCard.className = "bg-slate-900/60 border border-slate-800/80 p-3 rounded-xl space-y-2";
                 
                 let colorsHtml = `<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">`;
-                
                 for(let color in prod.colors) {
                     const currentStock = prod.colors[color];
                     const isAvailable = currentStock > 0;
                     const stockLabel = isAvailable ? `In Stock (${currentStock})` : 'Out of Stock';
                     const labelColor = isAvailable ? 'text-emerald-400' : 'text-red-500/80';
-                    
                     const cartKey = `${prod.id}_${color}`;
                     const activeQty = localOrderCart[cartKey] || 0;
 
@@ -520,7 +701,6 @@
                         </div>`;
                 }
                 colorsHtml += `</div>`;
-
                 pCard.innerHTML = `<div class="flex justify-between items-center border-b border-slate-800/50 pb-1.5"><h4 class="text-xs font-bold text-sky-400 uppercase tracking-wide">${prod.name}</h4></div>${colorsHtml}`;
                 listContainer.appendChild(pCard);
             });
@@ -531,189 +711,72 @@
             let currentQty = localOrderCart[cartKey] || 0;
             currentQty += delta;
             if(currentQty < 0) currentQty = 0;
-            
             if(currentQty === 0) { delete localOrderCart[cartKey]; } 
             else { localOrderCart[cartKey] = currentQty; }
-            
             document.getElementById(`qty-${cartKey}`).innerText = currentQty;
             updateCartCountDisplay();
         }
-
         function updateCartCountDisplay() {
             let total = 0;
             for(let k in localOrderCart) { total += localOrderCart[k]; }
             document.getElementById('cart-total-items').innerText = total;
         }
 
-        /* WHATSAPP BULK OPTIMIZED MINI TEXT BUILDER ORDER DISPATCHER */
+        /* WHATSAPP SENDER (NEW NUM 9660382065) */
         function sendWhatsAppOrder() {
             let itemsOrdered = [];
-            
             for(let key in masterStockData) {
                 masterStockData[key].products.forEach(prod => {
                     for(let color in prod.colors) {
                         const cartKey = `${prod.id}_${color}`;
                         if(localOrderCart[cartKey] && localOrderCart[cartKey] > 0) {
-                            itemsOrdered.push(`• ${prod.name} (${color}) - ${localOrderCart[cartKey]} Nos`);
+                            itemsOrdered.push(`• ${prod.name} (${color}) - ${localOrderCart[cartKey]} Pcs`);
                         }
                     }
                 });
             }
 
-            if(itemsOrdered.length === 0) {
-                alert("¼ðêñ¡ æãÜñ ôæâñ ðþñãáá ðñôòãá áðóãé ôñ×ë÷ëóò ðôòîóò (+) òóòñæ öëáãë!");
-                return;
-            }
+            if(itemsOrdered.length === 0) { alert("कृपया पहले स्टॉक (+) बटन दबाकर जोड़ें!"); return; }
 
             let message = `*SVK GROUP - NEW B2B ORDER*\n`;
+            message += `------------------------------------\n`;
+            message += `*दुकान का नाम:* ${currentB2BUser.shop || "Unknown"}\n`;
+            message += `*मोबाइल:* ${currentB2BUser.phone || "Unknown"}\n`;
             message += `------------------------------------\n`;
             message += itemsOrdered.join('\n');
             message += `\n------------------------------------\n`;
             message += `*कृपया इस आर्डर को पैक करके वजन करवाएं। धन्यवाद!*`;
 
             const encodedMsg = encodeURIComponent(message);
-            window.open(`https://wa.me/919516335133?text=${encodedMsg}`, '_blank');
+            window.open(`https://wa.me/919660382065?text=${encodedMsg}`, '_blank');
         }
 
-        /* ADMIN SYSTEM DASHBOARD CONTROL PANEL */
-        function handleLogin() {
-            const u = document.getElementById('admin-username').value;
-            const p = document.getElementById('admin-password').value;
-            if (u === "svkadmin" && p === "svk@2026") {
-                isAuthorizedAdmin = true;
-                document.getElementById('login-error').classList.add('hidden');
-                document.getElementById('admin-login-box').classList.add('hidden');
-                document.getElementById('admin-dashboard-box').classList.remove('hidden');
-                renderLeadsTableSecure();
-                loadAdminSectionsSelectDropdown();
-            } else { document.getElementById('login-error').classList.remove('hidden'); }
-        }
-
-        function handleLogout() { isAuthorizedAdmin = false; clearAdminUIPanels(); showSection('home-section'); }
-        function clearAdminUIPanels() {
-            document.getElementById('admin-username').value = ""; document.getElementById('admin-password').value = "";
-            document.getElementById('admin-dashboard-box').classList.add('hidden'); document.getElementById('admin-login-box').classList.remove('hidden');
-        }
-
-        function loadAdminSectionsSelectDropdown() {
-            const select = document.getElementById('admin-stock-section-select');
-            select.innerHTML = '';
-            for(let key in masterStockData) {
-                const option = document.createElement('option');
-                option.value = key;
-                option.innerText = masterStockData[key].title;
-                select.appendChild(option);
-            }
-            loadAdminProductsDropdown();
-        }
-
-        function loadAdminProductsDropdown() {
-            const secKey = document.getElementById('admin-stock-section-select').value;
-            document.getElementById('admin-edit-section-name').value = masterStockData[secKey].title;
-            
-            const pSelect = document.getElementById('admin-stock-product-select');
-            pSelect.innerHTML = '';
-            
-            masterStockData[secKey].products.forEach((p, index) => {
-                const option = document.createElement('option');
-                option.value = index;
-                option.innerText = p.name || `Product ${index + 1}`;
-                pSelect.appendChild(option);
-            });
-            loadAdminColorsPanel();
-        }
-
-        function loadAdminColorsPanel() {
-            const secKey = document.getElementById('admin-stock-section-select').value;
-            const pIndex = document.getElementById('admin-stock-product-select').value;
-            if(pIndex === "") return;
-            
-            const product = masterStockData[secKey].products[pIndex];
-            document.getElementById('admin-edit-product-name').value = product.name;
-
-            const box = document.getElementById('admin-colors-stock-box');
-            box.innerHTML = '';
-
-            for(let color in product.colors) {
-                const wrapper = document.createElement('div');
-                wrapper.className = "flex justify-between items-center text-xs pb-1 border-b border-slate-900";
-                wrapper.innerHTML = `
-                    <span class="text-slate-400 font-medium">${color}:</span>
-                    <input type="number" value="${product.colors[color]}" min="0" oninput="updateColorStockDirectly('${secKey}', ${pIndex}, '${color}', this.value)" class="w-16 bg-slate-900 border border-slate-800 text-white rounded text-center py-0.5 text-xs font-mono">
-                `;
-                box.appendChild(wrapper);
-            }
-        }
-
-        /* FIX: Dynamic Realtime Sync & View Refresher */
-        function updateColorStockDirectly(secKey, pIndex, color, value) {
-            let numericVal = parseInt(value) || 0;
-            if(numericVal < 0) numericVal = 0;
-            
-            // 1. Core State update
-            masterStockData[secKey].products[pIndex].colors[color] = numericVal;
-            
-            // 2. LocalStorage permanent write sync
-            localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
-            
-            // 3. CRITICAL LIVE FIX: If that section page is currently rendered, instantly force update the background view data sync!
-            if (currentActiveSectionKey === secKey) {
-                const targetCartKey = `${masterStockData[secKey].products[pIndex].id}_${color}`;
-                // If it is open right now, refresh its data without shifting the view layout
-                const listContainer = document.getElementById('b2b-products-list');
-                if (listContainer && listContainer.innerHTML !== "") {
-                     // Rather than breaking the DOM state entirely, let's keep it safe by refreshing list array configurations softly or re-rendering quietly.
-                     // The softest bulletproof approach is calling the renderer silently so it maps correctly next time it flips view or loops.
-                }
-            }
-        }
-
-        function saveSectionNameRename() {
-            const secKey = document.getElementById('admin-stock-section-select').value;
-            const newName = document.getElementById('admin-edit-section-name').value.trim();
-            if(!newName) return;
-            masterStockData[secKey].title = newName;
-            localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
-            loadAdminSectionsSelectDropdown();
-            document.getElementById('admin-stock-section-select').value = secKey;
-            loadAdminProductsDropdown();
-            alert("केटेगरी का नाम सफलतापूर्वक अपडेट हो गया!");
-        }
-
-        function saveProductNameRename() {
-            const secKey = document.getElementById('admin-stock-section-select').value;
-            const pIndex = document.getElementById('admin-stock-product-select').value;
-            const newName = document.getElementById('admin-edit-product-name').value.trim();
-            if(!newName || pIndex === "") return;
-            masterStockData[secKey].products[pIndex].name = newName;
-            localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
-            loadAdminProductsDropdown();
-            document.getElementById('admin-stock-product-select').value = pIndex;
-            alert("प्रोडक्ट का नाम सफलतापूर्वक अपडेट हो गया!");
-        }
-
-        /* PRESERVED LEGACY CODE ENGINE FUNCTIONS */
+        /* 🆕 40-IMAGE SMART LAZY LOOP GALLERY */
         function openGalleryPage(type) {
             const gridContainer = document.getElementById('photos-grid');
             gridContainer.innerHTML = '';
+            
             let currentPrefix = type === 'aluminium' ? 'alu' : (type === 'glass' ? 'glass' : 'steel');
-            let imageArray = sampleGalleryImages[type];
+            const totalPhotos = 40; 
 
-            imageArray.forEach((placeholderUrl, index) => {
-                const fileName = `${currentPrefix}${index + 1}.png`;
+            for (let i = 1; i <= totalPhotos; i++) {
+                const fileName = `${currentPrefix}${i}.webp`;
                 const card = document.createElement('div');
                 card.className = "bg-slate-900 rounded-lg overflow-hidden border border-slate-800 opacity-0 transform translate-y-3 gallery-img-card";
+                
                 card.innerHTML = `
                     <div class="h-28 md:h-44 w-full overflow-hidden bg-slate-950 flex items-center justify-center">
-                        <img src="${fileName}" alt="SVK Work" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='${placeholderUrl}';">
+                        <img src="${fileName}" loading="lazy" alt="SVK Work" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://picsum.photos/600/400?random=${i}';">
                     </div>
                     <div class="p-1 text-center text-[9px] text-slate-500 font-mono">${fileName}</div>`;
+                
                 gridContainer.appendChild(card);
-            });
+            }
             showSection('gallery-section');
-            gsap.to(".gallery-img-card", { opacity: 1, y: 0, duration: 0.4, stagger: 0.05 });
+            gsap.to(".gallery-img-card", { opacity: 1, y: 0, duration: 0.4, stagger: 0.02 });
         }
 
+        /* GENERAL FORMS & GPS */
         function toggleOtherInput() {
             const chk = document.getElementById('other-checkbox');
             const txt = document.getElementById('other-text-input');
@@ -769,6 +832,118 @@
             }});
         }
 
+        /* 🔐 SECURE ADMIN PANEL */
+        function handleLogin() {
+            const u = document.getElementById('admin-username').value;
+            const p = document.getElementById('admin-password').value;
+            if (u === "svkadmin" && p === "svk@2026") {
+                isAuthorizedAdmin = true;
+                document.getElementById('login-error').classList.add('hidden');
+                document.getElementById('admin-login-box').classList.add('hidden');
+                document.getElementById('admin-dashboard-box').classList.remove('hidden');
+                renderLeadsTableSecure();
+                loadAdminSectionsSelectDropdown();
+            } else { document.getElementById('login-error').classList.remove('hidden'); }
+        }
+
+        function handleLogout() { isAuthorizedAdmin = false; clearAdminUIPanels(); showSection('home-section'); }
+        function clearAdminUIPanels() {
+            document.getElementById('admin-username').value = ""; document.getElementById('admin-password').value = "";
+            document.getElementById('admin-dashboard-box').classList.add('hidden'); document.getElementById('admin-login-box').classList.remove('hidden');
+        }
+
+        function loadAdminSectionsSelectDropdown() {
+            const select = document.getElementById('admin-stock-section-select');
+            select.innerHTML = '';
+            for(let key in masterStockData) {
+                const option = document.createElement('option');
+                option.value = key;
+                option.innerText = masterStockData[key].title;
+                select.appendChild(option);
+            }
+            loadAdminProductsDropdown();
+        }
+
+        function loadAdminProductsDropdown() {
+            const secKey = document.getElementById('admin-stock-section-select').value;
+            document.getElementById('admin-edit-section-name').value = masterStockData[secKey].title;
+            
+            const pSelect = document.getElementById('admin-stock-product-select');
+            pSelect.innerHTML = '';
+            
+            masterStockData[secKey].products.forEach((p, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.innerText = p.name || `Product ${index + 1}`;
+                pSelect.appendChild(option);
+            });
+            loadAdminColorsPanel();
+        }
+
+        /* 🆕 UPDATED ADMIN COLOR PANEL WITH SAVE BUTTON */
+        function loadAdminColorsPanel() {
+            const secKey = document.getElementById('admin-stock-section-select').value;
+            const pIndex = document.getElementById('admin-stock-product-select').value;
+            if(pIndex === "") return;
+            
+            const product = masterStockData[secKey].products[pIndex];
+            document.getElementById('admin-edit-product-name').value = product.name;
+
+            const box = document.getElementById('admin-colors-stock-box');
+            box.innerHTML = '';
+
+            for(let color in product.colors) {
+                const wrapper = document.createElement('div');
+                wrapper.className = "flex justify-between items-center text-xs pb-1 border-b border-slate-900";
+                wrapper.innerHTML = `
+                    <span class="text-slate-400 font-medium">${color}:</span>
+                    <input type="number" value="${product.colors[color]}" min="0" data-color="${color}" class="color-stock-input w-16 bg-slate-900 border border-slate-800 focus:border-emerald-500 focus:outline-none text-white rounded text-center py-0.5 text-xs font-mono transition-colors">
+                `;
+                box.appendChild(wrapper);
+            }
+        }
+
+        function saveAllColorStocks() {
+            const secKey = document.getElementById('admin-stock-section-select').value;
+            const pIndex = document.getElementById('admin-stock-product-select').value;
+            if(pIndex === "") return;
+
+            const inputs = document.querySelectorAll('.color-stock-input');
+            inputs.forEach(input => {
+                const color = input.getAttribute('data-color');
+                let numericVal = parseInt(input.value) || 0;
+                if(numericVal < 0) numericVal = 0;
+                masterStockData[secKey].products[pIndex].colors[color] = numericVal;
+            });
+
+            localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
+            alert("✅ सभी रंगों का स्टॉक सफलतापूर्वक अपडेट कर दिया गया है!");
+        }
+
+        function saveSectionNameRename() {
+            const secKey = document.getElementById('admin-stock-section-select').value;
+            const newName = document.getElementById('admin-edit-section-name').value.trim();
+            if(!newName) return;
+            masterStockData[secKey].title = newName;
+            localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
+            loadAdminSectionsSelectDropdown();
+            document.getElementById('admin-stock-section-select').value = secKey;
+            loadAdminProductsDropdown();
+            alert("केटेगरी अपडेट हो गई!");
+        }
+
+        function saveProductNameRename() {
+            const secKey = document.getElementById('admin-stock-section-select').value;
+            const pIndex = document.getElementById('admin-stock-product-select').value;
+            const newName = document.getElementById('admin-edit-product-name').value.trim();
+            if(!newName || pIndex === "") return;
+            masterStockData[secKey].products[pIndex].name = newName;
+            localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
+            loadAdminProductsDropdown();
+            document.getElementById('admin-stock-product-select').value = pIndex;
+            alert("प्रोडक्ट अपडेट हो गया!");
+        }
+
         function updateNotice() {
             if(!isAuthorizedAdmin) return;
             const txt = document.getElementById('notice-input').value;
@@ -780,25 +955,46 @@
         }
 
         function renderLeadsTableSecure() {
+            if (!isAuthorizedAdmin) return;
+            
+            // Render Normal Leads
             const body = document.getElementById('leads-table-body');
             body.innerHTML = '';
-            if (!isAuthorizedAdmin) return;
             const leads = JSON.parse(localStorage.getItem('svk_leads')) || [];
-            if(leads.length === 0) { body.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-slate-500">कोई डेटा नहीं।</td></tr>`; return; }
+            if(leads.length === 0) { body.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-slate-500">कोई डेटा नहीं।</td></tr>`; }
+            else {
+                leads.reverse().forEach((lead) => {
+                    let mapBtn = `<span class="text-slate-600 italic text-[10px]">No GPS</span>`;
+                    if(lead.gps) mapBtn = `<a href="http://googleusercontent.com/maps.google.com/maps?q=${lead.gps}" target="_blank" class="bg-emerald-500 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px]">📍 Link</a>`;
+                    const tr = document.createElement('tr');
+                    tr.className = "border-b border-slate-800 text-slate-300";
+                    tr.innerHTML = `<td class="p-2 font-bold text-white">${lead.name}</td><td class="p-2 text-sky-400">${lead.phone}</td><td class="p-2 text-amber-400">${lead.demands}</td><td class="p-2 text-slate-400 text-[11px]">${lead.address}</td><td class="p-2 text-center">${mapBtn}</td>`;
+                    body.appendChild(tr);
+                });
+            }
 
-            leads.reverse().forEach((lead) => {
-                let mapBtn = `<span class="text-slate-600 italic text-[10px]">No GPS</span>`;
-                if(lead.gps) mapBtn = `<a href="http://googleusercontent.com/maps.google.com/maps?q=${lead.gps}" target="_blank" class="bg-emerald-500 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px]">📍 Link</a>`;
-                const tr = document.createElement('tr');
-                tr.className = "border-b border-slate-800 text-slate-300";
-                tr.innerHTML = `<td class="p-2 font-bold text-white">${lead.name}</td><td class="p-2 text-sky-400">${lead.phone}</td><td class="p-2 text-amber-400">${lead.demands}</td><td class="p-2 text-slate-400 text-[11px]">${lead.address}</td><td class="p-2 text-center">${mapBtn}</td>`;
-                body.appendChild(tr);
-            });
+            // Render B2B Leads
+            const b2bBody = document.getElementById('b2b-customers-table-body');
+            b2bBody.innerHTML = '';
+            const b2bLeads = JSON.parse(localStorage.getItem('svk_b2b_leads')) || [];
+            if(b2bLeads.length === 0) { b2bBody.innerHTML = `<tr><td colspan="2" class="p-3 text-center text-slate-500">कोई डेटा नहीं।</td></tr>`; }
+            else {
+                b2bLeads.reverse().forEach((b) => {
+                    const tr = document.createElement('tr');
+                    tr.className = "border-b border-slate-800 text-slate-300";
+                    tr.innerHTML = `<td class="p-2 font-bold text-white">${b.shop}</td><td class="p-2 text-sky-400">${b.phone}</td>`;
+                    b2bBody.appendChild(tr);
+                });
+            }
         }
 
         function clearAllLeads() {
             if(!isAuthorizedAdmin) return;
-            if(confirm("डेटा डिलीट करें?")) { localStorage.removeItem('svk_leads'); renderLeadsTableSecure(); }
+            if(confirm("सभी ग्राहकों और B2B दुकानदारों का डेटा डिलीट करें?")) { 
+                localStorage.removeItem('svk_leads'); 
+                localStorage.removeItem('svk_b2b_leads'); 
+                renderLeadsTableSecure(); 
+            }
         }
     </script>
 </body>
