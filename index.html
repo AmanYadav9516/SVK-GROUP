@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVK Group - Aluminium, Steel & Glass</title>
+    
+    <!-- 1. ADVANCED SEO OPTIMIZATION -->
+    <title>SVK Group - Premium Aluminium, Steel & Glass Work in Reengas</title>
+    <meta name="description" content="SVK Group (Shri Vishvkarma Aluminium & Glass & Steel) provides high-quality premium windows, toughened glass work, structures, and wholesale distribution in Reengas, Sikar (332404).">
+    <link rel="canonical" href="https://svkgroup.com">
+
+    <!-- 2. OPEN GRAPH TAGS FOR WHATSAPP LINK PREVIEW -->
+    <meta property="og:title" content="SVK Group - Aluminium, Steel & Glass">
+    <meta property="og:description" content="थोक दुकानदार लाइव स्टॉक देखें व आर्डर बुक करें। Premium Windows & Designed Toughened Glass.">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:url" content="https://svkgroup.com">
+    <meta property="og:type" content="website">
+
+    <!-- 3. GOOGLE LOCAL BUSINESS STRUCTURED DATA SCHEMA (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "SHRI VISHVKARMA ALUMINIUM & GLASS & STEEL (SVK Group)",
+      "image": "logo.png",
+      "telephone": "+919660382065",
+      "url": "https://svkgroup.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Main Market",
+        "addressLocality": "Reengas",
+        "addressRegion": "Rajasthan",
+        "postalCode": "332404",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "27.3624",
+        "longitude": "75.5612"
+      }
+    }
+    </script>
+
+    <!-- LIBS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         body {
@@ -59,11 +98,10 @@
         .inner-neon-btn:active { background-color: #1e293b; transform: scale(0.98); }
         .glass-panel { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.05); }
 
-        /* RGB Running Light Effect for Owners */
+        /* RGB Running Light Effect for Owners & Popups */
         .rgb-border-wrap {
             position: relative;
             padding: 4px;
-            border-radius: 50%;
             background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
             background-size: 300% 300%;
             animation: animatedgradient 3s ease alternate infinite;
@@ -115,6 +153,7 @@
 </head>
 <body class="bg-[#0f172a] text-[#f8fafc]">
 
+    <!-- WELCOME PAGE -->
     <div id="welcome-page" class="fixed inset-0 bg-[#05050a] z-[60] flex flex-col justify-center items-center overflow-hidden px-4">
         <h1 id="welcome-shyam" class="text-xl md:text-3xl font-bold text-red-500 mb-3 tracking-widest opacity-0 text-center">❤️ JAI SHREE SHYAM ❤️</h1>
         <h2 id="welcome-group-text" class="text-lg md:text-2xl font-bold text-sky-400 mb-1 tracking-wide opacity-0 text-center uppercase">WELCOME TO SVK RINGAS (332404)</h2>
@@ -124,17 +163,19 @@
         </div>
     </div>
 
+    <!-- MAIN APP SITE STRUCTURE -->
     <div id="main-site" class="hidden-page min-h-screen pt-24 pb-12">
         
         <nav id="main-navbar" class="fixed top-0 left-0 w-full z-40 glass-nav px-4 py-3 flex justify-between items-center shadow-xl">
             <div onclick="showSection('home-section')" class="text-lg md:text-2xl font-bold tracking-wider text-sky-400 cursor-pointer">SVK GROUP</div>
             <div class="flex space-x-2 font-semibold text-[10px] md:text-sm">
                 <button onclick="showSection('home-section')" class="bg-slate-800/80 hover:bg-slate-700 px-2.5 py-1.5 rounded-lg text-slate-200 transition-colors">होम</button>
-                <button onclick="showSection('order-section')" class="bg-emerald-600/20 hover:bg-emerald-600/40 text-emerald-400 px-2.5 py-1.5 rounded-lg border border-emerald-500/30 transition-colors">ऑर्डर</button>
+                <button onclick="showSection('order-section')" class="bg-emerald-600/20 hover:bg-emerald-600/40 text-emerald-400 px-2.5 py-1.5 rounded-lg border border-emerald-500/30 transition-colors">ऑर्डर Form</button>
                 <button onclick="openConnectUsModal()" class="bg-gradient-to-r from-fuchsia-600 to-purple-600 px-2.5 py-1.5 rounded-lg text-white animate-pulse shadow-lg shadow-fuchsia-500/30">Connect Us</button>
             </div>
         </nav>
 
+        <!-- HOMEPAGE SECTION -->
         <section id="home-section" class="max-w-4xl mx-auto px-4 flex flex-col items-center mt-2">
             <div class="text-center mb-6">
                 <h1 id="shop-title" class="text-4xl md:text-6xl font-bold mb-1 tracking-tight text-white opacity-0">SVK GROUP</h1>
@@ -185,7 +226,9 @@
             </div>
         </section>
 
+        <!-- B2B PORTAL DASHBOARD -->
         <section id="b2b-dashboard-section" class="hidden-page max-w-4xl mx-auto px-4 mt-2">
+            <!-- LIVE TICKER AREA -->
             <div class="mb-4">
                 <div class="text-[10px] text-emerald-400 font-bold mb-1 uppercase tracking-wider">LIVE MARKET RATES 📈</div>
                 <div class="ticker-wrap p-2 shadow-inner">
@@ -195,6 +238,11 @@
                         <span class="mx-4">💎 Glass: <span id="ticker-glass" class="text-fuchsia-400">Loading...</span></span>
                     </div>
                 </div>
+            </div>
+
+            <!-- STATIC B2B PROMO BANNER (OPTION 3) -->
+            <div class="w-full mb-6 rounded-xl overflow-hidden border border-slate-800 bg-slate-950">
+                <img src="advertisement.webp" alt="SVK Wholesale Promo" class="w-full h-auto max-h-36 object-cover" onerror="this.onerror=null; this.style.display='none';">
             </div>
 
             <div class="flex justify-between items-center mb-6 pb-3 border-b border-slate-800">
@@ -208,6 +256,7 @@
             <div id="b2b-categories-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
         </section>
 
+        <!-- B2B DEEP STOCK INVENTORY -->
         <section id="b2b-inventory-section" class="hidden-page max-w-4xl mx-auto px-4 mt-2">
             <div class="flex justify-between items-center mb-4 pb-2 border-b border-slate-800">
                 <div>
@@ -229,6 +278,7 @@
             </div>
         </section>
 
+        <!-- 40 IMAGE SMART LAZY LOADING GALLERY -->
         <section id="gallery-section" class="hidden-page max-w-4xl mx-auto px-3 mt-2">
             <div class="animated-stripe h-2.5 w-full rounded-t-xl mb-4"></div>
             <div class="text-center mb-6">
@@ -241,6 +291,7 @@
             <div class="animated-stripe h-2.5 w-full rounded-b-xl mt-4"></div>
         </section>
 
+        <!-- CLIENT FORM SECTION -->
         <section id="order-section" class="hidden-page max-w-md mx-auto px-3 mt-2">
             <div class="bg-slate-900/90 p-5 rounded-xl shadow-2xl border border-slate-800">
                 <h2 class="text-lg md:text-xl font-bold text-center text-sky-400 mb-1">ऑर्डर डिमांड फॉर्म</h2>
@@ -278,12 +329,14 @@
             </div>
         </section>
 
+        <!-- MAP SECTION -->
         <section id="map-section" class="hidden-page max-w-2xl mx-auto px-3 mt-2">
             <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 h-[340px]">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.712345678912!2d74.1234567!3d26.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDA3JzE0LjIiTiA3NMKwMDcnMTQuMiJF!5e0!3m2!1shi!2sin!4v1710000000000!5m2!1shi!2sin" class="w-full h-full rounded-lg border-0" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </section>
 
+        <!-- SECURE SYSTEM ADMIN DASHBOARD -->
         <section id="admin-section" class="hidden-page max-w-4xl mx-auto px-2 mt-2">
             <div id="admin-login-box" class="bg-slate-900/90 p-6 rounded-xl max-w-sm mx-auto border border-slate-800 shadow-2xl">
                 <h2 class="text-base font-bold text-center text-sky-400 mb-3">🔐 एडमिन कंट्रोल पैनल लॉगिन</h2>
@@ -297,6 +350,7 @@
             
             <div id="admin-dashboard-box" class="space-y-6 hidden">
                 
+                <!-- NEW MARKET DAILY RATES MANAGER BOX -->
                 <div class="bg-slate-900/90 p-4 rounded-xl border border-fuchsia-500/20 shadow-2xl">
                     <h2 class="text-base font-bold text-fuchsia-400 mb-2">📊 डेली मार्केट रेट अपडेट</h2>
                     <p class="text-[10px] text-slate-400 mb-3">B2B ग्राहकों को दिखने वाले लाइव रेट्स यहाँ से बदलें:</p>
@@ -317,9 +371,9 @@
                     <button onclick="saveAdminRates()" class="bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-[11px] font-bold px-4 py-1.5 rounded shadow">रेट्स अपडेट करें</button>
                 </div>
 
+                <!-- STOCK MANAGEMENT WITH DIRECT BULK UPDATE BUTTON -->
                 <div class="bg-slate-900/90 p-4 rounded-xl border border-sky-500/20 shadow-2xl">
                     <h2 class="text-base font-bold text-sky-400 mb-2">📦 SVK थोक स्टॉक मैनेजमेंट पैनल</h2>
-                    <p class="text-[10px] text-slate-400 mb-4">यहाँ से आप बिना कोड छुए किसी भी केटेगरी, प्रोडक्ट का नाम और उसका लाइव स्टॉक बदल सकते हैं।</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
@@ -348,8 +402,9 @@
 
                         <div>
                             <label class="block text-[11px] text-slate-400 mb-1 font-semibold">3. रंगों का स्टॉक सेट करें (Pcs में):</label>
-                            <div id="admin-colors-stock-box" class="space-y-2 max-h-48 overflow-y-auto bg-slate-950 border border-slate-800 rounded-lg p-2">
-                            </div>
+                            <div id="admin-colors-stock-box" class="space-y-2 max-h-48 overflow-y-auto bg-slate-950 border border-slate-800 rounded-lg p-2"></div>
+                            
+                            <!-- STOCKS DIRECT SAVE BINDER -->
                             <button onclick="saveAllColorStocks()" class="w-full mt-3 bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold py-2 rounded shadow-lg shadow-emerald-500/20 transition-all uppercase tracking-wider">
                                 ✅ स्टॉक अपडेट करें
                             </button>
@@ -357,6 +412,7 @@
                     </div>
                 </div>
 
+                <!-- SECURE TABLES FOR CLIENT MANAGEMENT LEADS -->
                 <div class="bg-slate-900/90 p-4 rounded-xl border border-emerald-500/20 shadow-2xl">
                     <div class="flex flex-col md:flex-row justify-between items-center mb-4 gap-2">
                         <h2 class="text-base font-bold text-emerald-400">SVK ग्राहक डेटा लीड्स 📈</h2>
@@ -365,6 +421,7 @@
                             <button onclick="handleLogout()" class="text-[10px] bg-slate-800 text-slate-300 px-3 py-1 rounded">लॉगआउट</button>
                         </div>
                     </div>
+
                     <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 mb-4">
                         <label class="block text-[11px] font-semibold text-slate-300 mb-1">लाइव सूचना पट्टी टेक्स्ट बदलें:</label>
                         <div class="flex gap-2">
@@ -373,18 +430,18 @@
                         </div>
                     </div>
                     
-                    <div class="mb-2 text-xs font-bold text-sky-400 mt-4 border-b border-slate-800 pb-1">B2B Wholesale Customers</div>
+                    <div class="mb-2 text-xs font-bold text-sky-400 mt-4 border-b border-slate-800 pb-1">B2B Verified Wholesale Shopkeepers</div>
                     <div class="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 mb-4">
                         <table class="w-full text-left border-collapse text-xs">
-                            <thead><tr class="bg-slate-900 text-slate-300 border-b border-slate-800"><th class="p-2.5">दुकान का नाम</th><th class="p-2.5">मोबाइल</th></tr></thead>
+                            <thead><tr class="bg-slate-900 text-slate-300 border-b border-slate-800"><th class="p-2.5">दुकान का नाम</th><th class="p-2.5">मोबाइल नंबर</th></tr></thead>
                             <tbody id="b2b-customers-table-body"></tbody>
                         </table>
                     </div>
 
-                    <div class="mb-2 text-xs font-bold text-emerald-400 border-b border-slate-800 pb-1">Normal Customers Orders</div>
+                    <div class="mb-2 text-xs font-bold text-emerald-400 border-b border-slate-800 pb-1">Standard Fabrications Orders Leads</div>
                     <div class="overflow-x-auto rounded-lg border border-slate-800 bg-slate-950">
                         <table class="w-full text-left border-collapse text-xs">
-                            <thead><tr class="bg-slate-900 text-slate-300 border-b border-slate-800"><th class="p-2.5">नाम</th><th class="p-2.5">मोबाइल</th><th class="p-2.5">मांग</th><th class="p-2.5">साइट पता</th><th class="p-2.5 text-center">मैप</th></tr></thead>
+                            <thead><tr class="bg-slate-900 text-slate-300 border-b border-slate-800"><th class="p-2.5">नाम</th><th class="p-2.5">मोबाइल</th><th class="p-2.5">मांग</th><th class="p-2.5">साइट पता</th><th class="p-2.5 text-center">मैप लिंक</th></tr></thead>
                             <tbody id="leads-table-body"></tbody>
                         </table>
                     </div>
@@ -394,12 +451,11 @@
         </section>
 
         <footer class="py-6 text-center text-[10px] text-slate-600 border-t border-slate-900/50 mt-12">
-            <p>© 2026 SHRI VISHVKARMA ALUMINIUMS. All Rights Reserved.</p>
+            <p>© 2026 SHRI VISHVKARMA ALUMINIUMS & GLASS & STEEL. All Rights Reserved.</p>
         </footer>
     </div>
 
-    <button onclick="showSection('admin-section')" class="fixed bottom-4 right-4 w-9 h-9 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-slate-400 z-50">🔒</button>
-
+    <!-- SUCCESS POPUP CARD -->
     <div id="success-popup" class="fixed inset-0 bg-black/80 z-50 hidden justify-center items-center p-4">
         <div class="bg-slate-900 p-6 rounded-xl max-w-sm w-full text-center border border-emerald-500/30 transform scale-95 opacity-0 transition-all duration-300" id="success-card">
             <div class="text-emerald-400 text-3xl mb-1">✓</div>
@@ -409,67 +465,91 @@
         </div>
     </div>
 
+    <!-- CONNECT US MODAL PANEL (OWNERS & SHOP SLIDER) -->
     <div id="connect-us-modal" class="fixed inset-0 bg-black/90 z-[55] hidden justify-center items-center p-4 overflow-y-auto">
         <div class="bg-slate-900 w-full max-w-md rounded-2xl border border-fuchsia-500/30 p-5 relative my-8">
             <button onclick="closeConnectUsModal()" class="absolute top-3 right-3 w-8 h-8 bg-slate-800 rounded-full text-white font-bold flex items-center justify-center">X</button>
             <h2 class="text-xl font-bold text-center text-fuchsia-400 mb-6 tracking-widest uppercase">Business Owners</h2>
             
             <div class="flex flex-col gap-6 mb-8">
+                <!-- Owner 1 Profile -->
                 <div class="owner-card flex items-center bg-slate-950/80 p-3 rounded-xl border border-slate-800 shadow-xl">
-                    <div class="w-20 h-20 rgb-border-wrap shrink-0">
-                        <img src="mahesh.webp" alt="Mahesh Yadav" class="w-full h-full rounded-full object-cover border-2 border-slate-900" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mahesh+Yadav&background=0D8ABC&color=fff';">
+                    <div class="w-20 h-20 rgb-border-wrap shrink-0 rounded-full overflow-hidden flex items-center justify-center">
+                        <img src="mahesh.webp" alt="Mahesh Yadav" class="w-full h-full rounded-full object-cover border-2 border-slate-900" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mahesh+Yadav&background=0284c7&color=fff';">
                     </div>
                     <div class="ml-4">
                         <h3 class="text-lg font-bold text-sky-400">Mr. Mahesh Yadav</h3>
-                        <p class="text-xs text-slate-400 mb-1">Founder & Director</p>
+                        <p class="text-[11px] text-fuchsia-400 font-bold uppercase tracking-wider mb-1">FOUNDER & OWNER</p>
                         <a href="tel:9983092600" class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded inline-block border border-emerald-500/20">📞 9983092600</a>
                     </div>
                 </div>
+                <!-- Owner 2 Profile -->
                 <div class="owner-card flex items-center bg-slate-950/80 p-3 rounded-xl border border-slate-800 shadow-xl">
-                    <div class="w-20 h-20 rgb-border-wrap shrink-0">
-                        <img src="rajesh.webp" alt="Rajesh Yadav" class="w-full h-full rounded-full object-cover border-2 border-slate-900" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Rajesh+Yadav&background=8B5CF6&color=fff';">
+                    <div class="w-20 h-20 rgb-border-wrap shrink-0 rounded-full overflow-hidden flex items-center justify-center">
+                        <img src="rajesh.webp" alt="Rajesh Yadav" class="w-full h-full rounded-full object-cover border-2 border-slate-900" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Rajesh+Yadav&background=8b5cf6&color=fff';">
                     </div>
                     <div class="ml-4">
                         <h3 class="text-lg font-bold text-sky-400">Mr. Rajesh Yadav</h3>
-                        <p class="text-xs text-slate-400 mb-1">Co-Founder & Manager</p>
+                        <p class="text-[11px] text-fuchsia-400 font-bold uppercase tracking-wider mb-1">FOUNDER & OWNER</p>
                         <a href="tel:7737285859" class="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded inline-block border border-emerald-500/20">📞 7737285859</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Shop Slider Trigger -->
             <button onclick="toggleShopGallery()" class="w-full bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold py-3 rounded-xl text-sm uppercase shadow-lg mb-4">
                 🏪 VIEW OUR SHOP 🏪
             </button>
             
             <div id="shop-gallery-box" class="hidden">
                 <div class="shop-slider-container">
-                    <img src="shop1.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=101'">
-                    <img src="shop2.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=102'">
-                    <img src="shop3.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=103'">
-                    <img src="shop4.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=104'">
-                    <img src="shop5.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=105'">
+                    <img src="shop1.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=501'">
+                    <img src="shop2.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=502'">
+                    <img src="shop3.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=503'">
+                    <img src="shop4.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=504'">
+                    <img src="shop5.webp" class="shop-slide h-40 object-cover" onerror="this.src='https://picsum.photos/400/200?random=505'">
                 </div>
                 <p class="text-center text-[9px] text-slate-500 mt-2">स्वाइप करके तस्वीरें देखें 👈👉</p>
             </div>
         </div>
     </div>
 
+    <!-- B2B CUSTOMER VERIFICATION GATEWAY -->
     <div id="b2b-entry-modal" class="fixed inset-0 bg-black/90 z-50 hidden justify-center items-center p-4">
         <div class="bg-slate-900 p-6 rounded-xl max-w-sm w-full border border-sky-500/30" id="b2b-entry-card">
             <h2 class="text-lg font-bold text-sky-400 mb-2">दुकानदार वेरिफिकेशन</h2>
             <p class="text-[10px] text-slate-400 mb-4">लाइव स्टॉक और रेट्स देखने के लिए अपनी दुकान की जानकारी दें:</p>
             <div class="space-y-3">
-                <input type="text" id="b2b-shop-name" placeholder="आपकी दुकान का नाम" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white">
-                <input type="tel" id="b2b-shop-phone" placeholder="दुकानदार का मोबाइल नंबर" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white">
-                <p id="b2b-entry-error" class="text-red-500 text-[10px] hidden">कृपया दोनों बॉक्स भरें!</p>
+                <input type="text" id="b2b-shop-name" placeholder="आपकी दुकान का नाम" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-sky-500">
+                <input type="tel" id="b2b-shop-phone" placeholder="दुकानदार का मोबाइल नंबर" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-sky-500">
+                <p id="b2b-entry-error" class="text-red-500 text-[10px] hidden text-center">कृपया दोनों बॉक्स सही-सही भरें!</p>
                 <button onclick="submitB2BEntry()" class="w-full bg-sky-500 text-slate-950 font-bold py-2 rounded-lg text-xs mt-2">प्रवेश करें (Enter) ➔</button>
                 <button onclick="closeB2BEntryModal()" class="w-full bg-slate-800 text-slate-400 py-1.5 rounded-lg text-xs mt-1">रद्द करें (Cancel)</button>
             </div>
         </div>
     </div>
 
+    <!-- 3D COLLISION FLYING ADVERTISEMENT POP-UP (OPTION 1) -->
+    <div id="adv-popup" class="fixed inset-0 bg-black/95 z-[70] hidden justify-center items-center p-4">
+        <div class="relative w-full max-w-sm flex items-center justify-center min-h-[300px]">
+            
+            <!-- Flying pieces that will collide -->
+            <div id="adv-part-left" class="absolute left-[-100%] w-24 h-24 bg-sky-500 rounded-lg flex items-center justify-center font-bold text-slate-950 text-xs shadow-2xl z-20">SVK GROUP</div>
+            <div id="adv-part-right" class="absolute right-[-100%] w-24 h-24 bg-fuchsia-500 rounded-lg flex items-center justify-center font-bold text-slate-950 text-xs shadow-2xl z-20">WHOLESALE</div>
+            
+            <!-- Real Ad wrap hidden initially -->
+            <div id="ad-main-wrap" class="w-full rgb-border-wrap rounded-2xl opacity-0 scale-50 overflow-hidden shadow-2xl">
+                <div class="bg-slate-900 p-1 relative rounded-2xl">
+                    <button onclick="closeAdvPopup()" class="absolute top-2 right-2 w-7 h-7 bg-black/80 rounded-full text-white font-bold text-xs flex items-center justify-center z-30 border border-slate-700">X</button>
+                    <img src="advertisement.webp" alt="SVK Special Ad" class="w-full h-auto rounded-xl object-contain" onerror="this.onerror=null; this.src='https://picsum.photos/400/500?random=99';">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <script>
-        // MASTER CONFIGURATION ENGINE
+        // CLIENT STATE MANAGEMENT ENGINE
         const defaultColors = ["Champagne", "Coffee", "Brown", "Wooden", "Ivory", "Black", "Silver"];
         let masterStockData = {};
         let localOrderCart = {};
@@ -516,7 +596,7 @@
             localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
         }
 
-        // INIT LOAD
+        // LOAD MANAGEMENT BINDERS
         window.addEventListener('load', () => {
             initializeInventoryDatabase();
             renderB2BCategoriesGrid();
@@ -528,7 +608,7 @@
                 document.getElementById('notice-input').value = savedNotice;
             }
 
-            // Welcome Page GSAP Anim
+            // Splash Screen Intro GSAP
             const tl = gsap.timeline();
             tl.to("#welcome-shyam", { opacity: 1, y: 5, duration: 0.5 })
               .to("#welcome-group-text", { opacity: 1, duration: 0.5 }, "-=0.2")
@@ -541,6 +621,7 @@
                     document.getElementById('welcome-page').style.display = 'none';
                     document.getElementById('main-site').classList.remove('hidden-page');
                     triggerHomepageAnimations();
+                    triggerAdvancedCollisionAd(); // Run option 1 ad popup
                 }
               });
         });
@@ -560,10 +641,22 @@
             if(sectionId !== 'admin-section' && !isAuthorizedAdmin) { clearAdminUIPanels(); }
         }
 
-        /* 🆕 CONNECT US MODAL FUNCTIONS */
+        /* 💥 OPTION 1: COLLISION FLYING AD POPUP */
+        function triggerAdvancedCollisionAd() {
+            document.getElementById('adv-popup').style.display = 'flex';
+            
+            const adTimeline = gsap.timeline();
+            adTimeline.to("#adv-part-left", { left: "50%", x: "-50%", duration: 0.4, ease: "power2.in" })
+                      .to("#adv-part-right", { right: "50%", x: "50%", duration: 0.4, ease: "power2.in" }, "-=0.4")
+                      .to(["#adv-part-left", "#adv-part-right"], { scale: 1.3, opacity: 0, duration: 0.1, display: "none" })
+                      .to("#ad-main-wrap", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" });
+        }
+        function closeAdvPopup() { document.getElementById('adv-popup').style.display = 'none'; }
+
+        /* 🆕 CONNECT US CONFIGURATION SYSTEM */
         function openConnectUsModal() {
             document.getElementById('connect-us-modal').style.display = 'flex';
-            gsap.from(".owner-card", { y: 50, rotationY: 180, opacity: 0, duration: 0.8, stagger: 0.2, ease: "back.out(1.5)" });
+            gsap.from(".owner-card", { y: 60, scale: 0.5, opacity: 0, duration: 0.6, stagger: 0.2, ease: "back.out(1.5)" });
         }
         function closeConnectUsModal() {
             document.getElementById('connect-us-modal').style.display = 'none';
@@ -573,45 +666,43 @@
             const box = document.getElementById('shop-gallery-box');
             if(box.classList.contains('hidden')) {
                 box.classList.remove('hidden');
-                gsap.from(".shop-slider-container", {opacity: 0, height: 0, duration: 0.5});
+                gsap.from(".shop-slider-container", { opacity: 1, y: 10, duration: 0.4 });
             } else { box.classList.add('hidden'); }
         }
 
-        /* 🆕 B2B ENTRY & RATES LOGIC */
+        /* 🆕 B2B REGISTRATION & SYSTEM RATES */
         function loadLiveMarketRates() {
-            const rates = JSON.parse(localStorage.getItem('svk_live_rates')) || { alu: "...", steel: "...", glass: "..." };
+            const rates = JSON.parse(localStorage.getItem('svk_live_rates')) || { alu: "285", steel: "340", glass: "85" };
             document.getElementById('ticker-alu').innerText = `₹${rates.alu}/Kg`;
             document.getElementById('ticker-steel').innerText = `₹${rates.steel}/Kg`;
             document.getElementById('ticker-glass').innerText = `₹${rates.glass}/Sq.Ft`;
             
-            // prefill admin
-            document.getElementById('admin-rate-alu').value = rates.alu !== "..." ? rates.alu : "";
-            document.getElementById('admin-rate-steel').value = rates.steel !== "..." ? rates.steel : "";
-            document.getElementById('admin-rate-glass').value = rates.glass !== "..." ? rates.glass : "";
+            document.getElementById('admin-rate-alu').value = rates.alu;
+            document.getElementById('admin-rate-steel').value = rates.steel;
+            document.getElementById('admin-rate-glass').value = rates.glass;
         }
         function saveAdminRates() {
-            const alu = document.getElementById('admin-rate-alu').value;
-            const steel = document.getElementById('admin-rate-steel').value;
-            const glass = document.getElementById('admin-rate-glass').value;
-            localStorage.setItem('svk_live_rates', JSON.stringify({alu, steel, glass}));
+            const alu = document.getElementById('admin-rate-alu').value.trim();
+            const steel = document.getElementById('admin-rate-steel').value.trim();
+            const glass = document.getElementById('admin-rate-glass').value.trim();
+            localStorage.setItem('svk_live_rates', JSON.stringify({ alu, steel, glass }));
             loadLiveMarketRates();
-            alert("रेट्स लाइव अपडेट कर दिए गए हैं!");
+            alert("📊 लाइव मार्केट रेट्स सफलतापूर्वक अपडेट हो गए!");
         }
 
         function triggerB2BEntry() {
             document.getElementById('b2b-entry-modal').style.display = 'flex';
-            gsap.fromTo("#b2b-entry-card", {scale: 0.8, opacity: 0}, {scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.5)"});
+            gsap.fromTo("#b2b-entry-card", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.4)" });
         }
         function closeB2BEntryModal() { document.getElementById('b2b-entry-modal').style.display = 'none'; }
         
         function submitB2BEntry() {
             const shop = document.getElementById('b2b-shop-name').value.trim();
             const phone = document.getElementById('b2b-shop-phone').value.trim();
-            if(!shop || !phone) { document.getElementById('b2b-entry-error').classList.remove('hidden'); return; }
+            if(!shop || phone.length < 10) { document.getElementById('b2b-entry-error').classList.remove('hidden'); return; }
             
             currentB2BUser = { shop, phone };
             
-            // Save to admin leads
             let b2bList = JSON.parse(localStorage.getItem('svk_b2b_leads')) || [];
             if(!b2bList.some(user => user.phone === phone)) { b2bList.push(currentB2BUser); }
             localStorage.setItem('svk_b2b_leads', JSON.stringify(b2bList));
@@ -722,7 +813,7 @@
             document.getElementById('cart-total-items').innerText = total;
         }
 
-        /* WHATSAPP SENDER (NEW NUM 9660382065) */
+        /* B2B WHATSAPP DISPATCH HANDLER (NEW NO: 9660382065) */
         function sendWhatsAppOrder() {
             let itemsOrdered = [];
             for(let key in masterStockData) {
@@ -736,12 +827,12 @@
                 });
             }
 
-            if(itemsOrdered.length === 0) { alert("कृपया पहले स्टॉक (+) बटन दबाकर जोड़ें!"); return; }
+            if(itemsOrdered.length === 0) { alert("कृपया पहले स्टॉक क्वांटिटी (+) बटन दबाकर जोड़ें!"); return; }
 
             let message = `*SVK GROUP - NEW B2B ORDER*\n`;
             message += `------------------------------------\n`;
-            message += `*दुकान का नाम:* ${currentB2BUser.shop || "Unknown"}\n`;
-            message += `*मोबाइल:* ${currentB2BUser.phone || "Unknown"}\n`;
+            message += `*दुकानदार फर्म:* ${currentB2BUser.shop}\n`;
+            message += `*मोबाइल नंबर:* ${currentB2BUser.phone}\n`;
             message += `------------------------------------\n`;
             message += itemsOrdered.join('\n');
             message += `\n------------------------------------\n`;
@@ -751,7 +842,7 @@
             window.open(`https://wa.me/919660382065?text=${encodedMsg}`, '_blank');
         }
 
-        /* 🆕 40-IMAGE SMART LAZY LOOP GALLERY */
+        /* GALLERY 40 PHOTO SMART LOOP WRAPPER */
         function openGalleryPage(type) {
             const gridContainer = document.getElementById('photos-grid');
             gridContainer.innerHTML = '';
@@ -766,7 +857,7 @@
                 
                 card.innerHTML = `
                     <div class="h-28 md:h-44 w-full overflow-hidden bg-slate-950 flex items-center justify-center">
-                        <img src="${fileName}" loading="lazy" alt="SVK Work" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://picsum.photos/600/400?random=${i}';">
+                        <img src="${fileName}" loading="lazy" alt="SVK Premium Work" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://picsum.photos/600/400?random=${i}';">
                     </div>
                     <div class="p-1 text-center text-[9px] text-slate-500 font-mono">${fileName}</div>`;
                 
@@ -776,7 +867,6 @@
             gsap.to(".gallery-img-card", { opacity: 1, y: 0, duration: 0.4, stagger: 0.02 });
         }
 
-        /* GENERAL FORMS & GPS */
         function toggleOtherInput() {
             const chk = document.getElementById('other-checkbox');
             const txt = document.getElementById('other-text-input');
@@ -790,8 +880,8 @@
                 navigator.geolocation.getCurrentPosition((position) => {
                     document.getElementById('cust-gps').value = `${position.coords.latitude},${position.coords.longitude}`;
                     status.classList.remove('hidden');
-                }, () => { alert("लोकेशन चालू करें।"); });
-            } else { alert("GPS अनुपलब्ध।"); }
+                }, () => { alert("लोकेशन परमिशन चालू करें।"); });
+            } else { alert("GPS तकनीक अनुपलब्ध।"); }
         }
 
         function handleFormSubmit(e) {
@@ -804,7 +894,7 @@
                     if(otherText.trim() !== '') demandsSelected.push(`OTHER: ${otherText}`);
                 } else { demandsSelected.push(cb.value); }
             });
-            if(demandsSelected.length === 0) { alert("एक विकल्प चुनें!"); return; }
+            if(demandsSelected.length === 0) { alert("कम से कम एक विकल्प चुनें!"); return; }
 
             const newLead = {
                 name: document.getElementById('cust-name').value,
@@ -832,7 +922,7 @@
             }});
         }
 
-        /* 🔐 SECURE ADMIN PANEL */
+        /* 🔐 CORE SECURE ADMIN CONTROLS */
         function handleLogin() {
             const u = document.getElementById('admin-username').value;
             const p = document.getElementById('admin-password').value;
@@ -867,10 +957,8 @@
         function loadAdminProductsDropdown() {
             const secKey = document.getElementById('admin-stock-section-select').value;
             document.getElementById('admin-edit-section-name').value = masterStockData[secKey].title;
-            
             const pSelect = document.getElementById('admin-stock-product-select');
             pSelect.innerHTML = '';
-            
             masterStockData[secKey].products.forEach((p, index) => {
                 const option = document.createElement('option');
                 option.value = index;
@@ -880,7 +968,6 @@
             loadAdminColorsPanel();
         }
 
-        /* 🆕 UPDATED ADMIN COLOR PANEL WITH SAVE BUTTON */
         function loadAdminColorsPanel() {
             const secKey = document.getElementById('admin-stock-section-select').value;
             const pIndex = document.getElementById('admin-stock-product-select').value;
@@ -903,6 +990,7 @@
             }
         }
 
+        /* NEW UNIFIED MASTER SAVE BUTTON FOR STOCKS */
         function saveAllColorStocks() {
             const secKey = document.getElementById('admin-stock-section-select').value;
             const pIndex = document.getElementById('admin-stock-product-select').value;
@@ -917,7 +1005,7 @@
             });
 
             localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
-            alert("✅ सभी रंगों का स्टॉक सफलतापूर्वक अपडेट कर दिया गया है!");
+            alert("✅ सभी रंगों का लाइव स्टॉक सफलतापूर्वक अपडेट हो गया है!");
         }
 
         function saveSectionNameRename() {
@@ -929,7 +1017,7 @@
             loadAdminSectionsSelectDropdown();
             document.getElementById('admin-stock-section-select').value = secKey;
             loadAdminProductsDropdown();
-            alert("केटेगरी अपडेट हो गई!");
+            alert("केटेगरी रीनेम अपडेट हो गई!");
         }
 
         function saveProductNameRename() {
@@ -941,7 +1029,7 @@
             localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
             loadAdminProductsDropdown();
             document.getElementById('admin-stock-product-select').value = pIndex;
-            alert("प्रोडक्ट अपडेट हो गया!");
+            alert("प्रोडक्ट का नाम अपडेट हो गया!");
         }
 
         function updateNotice() {
@@ -950,22 +1038,22 @@
             if(txt.trim() !== "") {
                 document.getElementById('live-notice-text').innerText = txt;
                 localStorage.setItem('svk_notice', txt);
-                alert("सूचना अपडेट हो गई!");
+                alert("सूचना बोर्ड अपडेट हो गया!");
             }
         }
 
         function renderLeadsTableSecure() {
             if (!isAuthorizedAdmin) return;
             
-            // Render Normal Leads
+            // Standard leads
             const body = document.getElementById('leads-table-body');
             body.innerHTML = '';
             const leads = JSON.parse(localStorage.getItem('svk_leads')) || [];
-            if(leads.length === 0) { body.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-slate-500">कोई डेटा नहीं।</td></tr>`; }
+            if(leads.length === 0) { body.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-slate-500">कोई ऑर्डर डेटा नहीं।</td></tr>`; }
             else {
                 leads.reverse().forEach((lead) => {
                     let mapBtn = `<span class="text-slate-600 italic text-[10px]">No GPS</span>`;
-                    if(lead.gps) mapBtn = `<a href="http://googleusercontent.com/maps.google.com/maps?q=${lead.gps}" target="_blank" class="bg-emerald-500 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px]">📍 Link</a>`;
+                    if(lead.gps) mapBtn = `<a href="https://www.google.com/maps?q=${lead.gps}" target="_blank" class="bg-emerald-500 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px]">📍 Link</a>`;
                     const tr = document.createElement('tr');
                     tr.className = "border-b border-slate-800 text-slate-300";
                     tr.innerHTML = `<td class="p-2 font-bold text-white">${lead.name}</td><td class="p-2 text-sky-400">${lead.phone}</td><td class="p-2 text-amber-400">${lead.demands}</td><td class="p-2 text-slate-400 text-[11px]">${lead.address}</td><td class="p-2 text-center">${mapBtn}</td>`;
@@ -973,11 +1061,11 @@
                 });
             }
 
-            // Render B2B Leads
+            // B2B leads table render
             const b2bBody = document.getElementById('b2b-customers-table-body');
             b2bBody.innerHTML = '';
             const b2bLeads = JSON.parse(localStorage.getItem('svk_b2b_leads')) || [];
-            if(b2bLeads.length === 0) { b2bBody.innerHTML = `<tr><td colspan="2" class="p-3 text-center text-slate-500">कोई डेटा नहीं।</td></tr>`; }
+            if(b2bLeads.length === 0) { b2bBody.innerHTML = `<tr><td colspan="2" class="p-3 text-center text-slate-500">कोई दुकानदार रिकॉर्ड नहीं।</td></tr>`; }
             else {
                 b2bLeads.reverse().forEach((b) => {
                     const tr = document.createElement('tr');
@@ -990,7 +1078,7 @@
 
         function clearAllLeads() {
             if(!isAuthorizedAdmin) return;
-            if(confirm("सभी ग्राहकों और B2B दुकानदारों का डेटा डिलीट करें?")) { 
+            if(confirm("सावधान! क्या आप ग्राहकों और B2B डेटा की पूरी हिस्ट्री डिलीट करना चाहते हैं?")) { 
                 localStorage.removeItem('svk_leads'); 
                 localStorage.removeItem('svk_b2b_leads'); 
                 renderLeadsTableSecure(); 
