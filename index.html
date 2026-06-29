@@ -44,6 +44,10 @@
     <!-- LIBS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- 🔥 FIREBASE (shared live database — replaces localStorage) -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
@@ -549,6 +553,18 @@
     </div>
 
     <script>
+        // 🔥 FIREBASE INITIALIZATION (shared live database for all visitors)
+        const firebaseConfig = {
+            apiKey: "AIzaSyA4P3x3Su15i2Piq74qBH_US3jAKmat50k",
+            authDomain: "svk-group.firebaseapp.com",
+            projectId: "svk-group",
+            storageBucket: "svk-group.firebasestorage.app",
+            messagingSenderId: "324455842346",
+            appId: "1:324455842346:web:aaf42ee09468cdb2ecb953"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
         // CLIENT STATE MANAGEMENT ENGINE
         const defaultColors = ["Champagne", "Coffee", "Brown", "Wooden", "Ivory", "Black", "Silver"];
         let masterStockData = {};
@@ -556,13 +572,8 @@
         let isAuthorizedAdmin = false;
         let currentB2BUser = { shop: "", phone: "" };
 
-        function initializeInventoryDatabase() {
-            const savedData = localStorage.getItem('svk_master_stock');
-            if(savedData) {
-                masterStockData = JSON.parse(savedData);
-                return;
-            }
-
+        function buildDefaultStockData() {
+            masterStockData = {};
             const baseSections = {
                 aluminium: { name: "Aluminium Work", emoji: "🪟" },
                 steel: { name: "Steel Work", emoji: "🚧" },
@@ -593,20 +604,67 @@
                     masterStockData[secKey].products.push(productObj);
                 }
             }
-            localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
+        }
+
+        // 🔥 LIVE STOCK SYNC: every visitor (and the admin) shares the SAME data via Firestore.
+        // onSnapshot keeps listening forever, so any admin update appears live everywhere.
+        function initializeInventoryDatabase() {
+            return new Promise((resolve) => {
+                const stockRef = db.collection('svk_config').doc('stock');
+                let firstLoadDone = false;
+
+                stockRef.onSnapshot((docSnap) => {
+                    if (docSnap.exists) {
+                        masterStockData = docSnap.data().data;
+                    } else {
+                        buildDefaultStockData();
+                        stockRef.set({ data: masterStockData });
+                    }
+
+                    if (!firstLoadDone) {
+                        firstLoadDone = true;
+                        resolve();
+                    } else {
+                        refreshLiveStockViews();
+                    }
+                }, (err) => {
+                    console.error("Firestore stock sync error:", err);
+                    if (!firstLoadDone) { buildDefaultStockData(); firstLoadDone = true; resolve(); }
+                });
+            });
+        }
+
+        // Re-paints whatever stock-related screen is currently open, so updates show up instantly
+        function refreshLiveStockViews() {
+            const b2bDash = document.getElementById('b2b-dashboard-section');
+            if (b2bDash && !b2bDash.classList.contains('hidden-page')) { renderB2BCategoriesGrid(); }
+
+            if (isAuthorizedAdmin) { loadAdminSectionsSelectDropdown(); }
+        }
+
+        function saveStockToFirestore() {
+            db.collection('svk_config').doc('stock').set({ data: masterStockData })
+              .catch(err => console.error("Stock save error:", err));
+        }
+
+
+        // 🔥 LIVE NOTICE BOARD SYNC
+        function setupLiveNotice() {
+            db.collection('svk_config').doc('notice').onSnapshot((docSnap) => {
+                if (docSnap.exists) {
+                    const txt = docSnap.data().text || "";
+                    document.getElementById('live-notice-text').innerText = txt;
+                    document.getElementById('notice-input').value = txt;
+                }
+            }, (err) => console.error("Notice sync error:", err));
         }
 
         // LOAD MANAGEMENT BINDERS
         window.addEventListener('load', () => {
-            initializeInventoryDatabase();
-            renderB2BCategoriesGrid();
+            // Data syncs in the background — doesn't block the splash animation
+            initializeInventoryDatabase().then(() => { renderB2BCategoriesGrid(); });
+            setupLiveNotice();
             loadLiveMarketRates();
-
-            const savedNotice = localStorage.getItem('svk_notice');
-            if (savedNotice) {
-                document.getElementById('live-notice-text').innerText = savedNotice;
-                document.getElementById('notice-input').value = savedNotice;
-            }
 
             // Splash Screen Intro GSAP
             const tl = gsap.timeline();
@@ -672,22 +730,24 @@
 
         /* 🆕 B2B REGISTRATION & SYSTEM RATES */
         function loadLiveMarketRates() {
-            const rates = JSON.parse(localStorage.getItem('svk_live_rates')) || { alu: "285", steel: "340", glass: "85" };
-            document.getElementById('ticker-alu').innerText = `₹${rates.alu}/Kg`;
-            document.getElementById('ticker-steel').innerText = `₹${rates.steel}/Kg`;
-            document.getElementById('ticker-glass').innerText = `₹${rates.glass}/Sq.Ft`;
-            
-            document.getElementById('admin-rate-alu').value = rates.alu;
-            document.getElementById('admin-rate-steel').value = rates.steel;
-            document.getElementById('admin-rate-glass').value = rates.glass;
+            db.collection('svk_config').doc('rates').onSnapshot((docSnap) => {
+                const rates = docSnap.exists ? docSnap.data() : { alu: "285", steel: "340", glass: "85" };
+                document.getElementById('ticker-alu').innerText = `₹${rates.alu}/Kg`;
+                document.getElementById('ticker-steel').innerText = `₹${rates.steel}/Kg`;
+                document.getElementById('ticker-glass').innerText = `₹${rates.glass}/Sq.Ft`;
+
+                document.getElementById('admin-rate-alu').value = rates.alu;
+                document.getElementById('admin-rate-steel').value = rates.steel;
+                document.getElementById('admin-rate-glass').value = rates.glass;
+            }, (err) => console.error("Rates sync error:", err));
         }
         function saveAdminRates() {
             const alu = document.getElementById('admin-rate-alu').value.trim();
             const steel = document.getElementById('admin-rate-steel').value.trim();
             const glass = document.getElementById('admin-rate-glass').value.trim();
-            localStorage.setItem('svk_live_rates', JSON.stringify({ alu, steel, glass }));
-            loadLiveMarketRates();
-            alert("📊 लाइव मार्केट रेट्स सफलतापूर्वक अपडेट हो गए!");
+            db.collection('svk_config').doc('rates').set({ alu, steel, glass })
+              .then(() => alert("📊 लाइव मार्केट रेट्स सफलतापूर्वक अपडेट हो गए!"))
+              .catch(err => { console.error(err); alert("⚠️ अपडेट करने में समस्या आई, फिर कोशिश करें।"); });
         }
 
         function triggerB2BEntry() {
@@ -696,16 +756,21 @@
         }
         function closeB2BEntryModal() { document.getElementById('b2b-entry-modal').style.display = 'none'; }
         
-        function submitB2BEntry() {
+        async function submitB2BEntry() {
             const shop = document.getElementById('b2b-shop-name').value.trim();
             const phone = document.getElementById('b2b-shop-phone').value.trim();
             if(!shop || phone.length < 10) { document.getElementById('b2b-entry-error').classList.remove('hidden'); return; }
             
             currentB2BUser = { shop, phone };
-            
-            let b2bList = JSON.parse(localStorage.getItem('svk_b2b_leads')) || [];
-            if(!b2bList.some(user => user.phone === phone)) { b2bList.push(currentB2BUser); }
-            localStorage.setItem('svk_b2b_leads', JSON.stringify(b2bList));
+
+            try {
+                const existing = await db.collection('b2b_leads').where('phone', '==', phone).limit(1).get();
+                if (existing.empty) {
+                    await db.collection('b2b_leads').add({ shop, phone, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+                }
+            } catch (err) {
+                console.error("B2B entry save error:", err);
+            }
 
             closeB2BEntryModal();
             enterB2BPortal();
@@ -884,7 +949,7 @@
             } else { alert("GPS तकनीक अनुपलब्ध।"); }
         }
 
-        function handleFormSubmit(e) {
+        async function handleFormSubmit(e) {
             e.preventDefault();
             const checkboxes = document.querySelectorAll('input[name="demand"]:checked');
             let demandsSelected = [];
@@ -901,11 +966,17 @@
                 phone: document.getElementById('cust-phone').value,
                 demands: demandsSelected.join(', '),
                 address: `${document.getElementById('cust-village').value}, Pin: ${document.getElementById('cust-pincode').value}, ${document.getElementById('cust-district').value}, ${document.getElementById('cust-state').value}`,
-                gps: document.getElementById('cust-gps').value
+                gps: document.getElementById('cust-gps').value,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
             };
-            let leads = JSON.parse(localStorage.getItem('svk_leads')) || [];
-            leads.push(newLead);
-            localStorage.setItem('svk_leads', JSON.stringify(leads));
+
+            try {
+                await db.collection('leads').add(newLead);
+            } catch (err) {
+                console.error("Lead save error:", err);
+                alert("⚠️ ऑर्डर सेव करने में समस्या आई। कृपया इंटरनेट चेक करके फिर कोशिश करें।");
+                return;
+            }
 
             document.getElementById('customer-demand-form').reset();
             document.getElementById('other-text-input').classList.add('hidden');
@@ -1004,7 +1075,7 @@
                 masterStockData[secKey].products[pIndex].colors[color] = numericVal;
             });
 
-            localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
+            saveStockToFirestore();
             alert("✅ सभी रंगों का लाइव स्टॉक सफलतापूर्वक अपडेट हो गया है!");
         }
 
@@ -1013,7 +1084,7 @@
             const newName = document.getElementById('admin-edit-section-name').value.trim();
             if(!newName) return;
             masterStockData[secKey].title = newName;
-            localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
+            saveStockToFirestore();
             loadAdminSectionsSelectDropdown();
             document.getElementById('admin-stock-section-select').value = secKey;
             loadAdminProductsDropdown();
@@ -1026,7 +1097,7 @@
             const newName = document.getElementById('admin-edit-product-name').value.trim();
             if(!newName || pIndex === "") return;
             masterStockData[secKey].products[pIndex].name = newName;
-            localStorage.setItem('svk_master_stock', JSON.stringify(masterStockData));
+            saveStockToFirestore();
             loadAdminProductsDropdown();
             document.getElementById('admin-stock-product-select').value = pIndex;
             alert("प्रोडक्ट का नाम अपडेट हो गया!");
@@ -1036,22 +1107,24 @@
             if(!isAuthorizedAdmin) return;
             const txt = document.getElementById('notice-input').value;
             if(txt.trim() !== "") {
-                document.getElementById('live-notice-text').innerText = txt;
-                localStorage.setItem('svk_notice', txt);
-                alert("सूचना बोर्ड अपडेट हो गया!");
+                db.collection('svk_config').doc('notice').set({ text: txt })
+                  .then(() => alert("सूचना बोर्ड अपडेट हो गया!"))
+                  .catch(err => { console.error(err); alert("⚠️ अपडेट करने में समस्या आई।"); });
             }
         }
 
-        function renderLeadsTableSecure() {
+        async function renderLeadsTableSecure() {
             if (!isAuthorizedAdmin) return;
             
             // Standard leads
             const body = document.getElementById('leads-table-body');
+            body.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-slate-500">लोड हो रहा है...</td></tr>`;
+            const leadsSnap = await db.collection('leads').orderBy('createdAt', 'desc').get().catch(() => null);
             body.innerHTML = '';
-            const leads = JSON.parse(localStorage.getItem('svk_leads')) || [];
-            if(leads.length === 0) { body.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-slate-500">कोई ऑर्डर डेटा नहीं।</td></tr>`; }
+            if(!leadsSnap || leadsSnap.empty) { body.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-slate-500">कोई ऑर्डर डेटा नहीं।</td></tr>`; }
             else {
-                leads.reverse().forEach((lead) => {
+                leadsSnap.forEach((docSnap) => {
+                    const lead = docSnap.data();
                     let mapBtn = `<span class="text-slate-600 italic text-[10px]">No GPS</span>`;
                     if(lead.gps) mapBtn = `<a href="https://www.google.com/maps?q=${lead.gps}" target="_blank" class="bg-emerald-500 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px]">📍 Link</a>`;
                     const tr = document.createElement('tr');
@@ -1063,11 +1136,13 @@
 
             // B2B leads table render
             const b2bBody = document.getElementById('b2b-customers-table-body');
+            b2bBody.innerHTML = `<tr><td colspan="2" class="p-3 text-center text-slate-500">लोड हो रहा है...</td></tr>`;
+            const b2bSnap = await db.collection('b2b_leads').orderBy('createdAt', 'desc').get().catch(() => null);
             b2bBody.innerHTML = '';
-            const b2bLeads = JSON.parse(localStorage.getItem('svk_b2b_leads')) || [];
-            if(b2bLeads.length === 0) { b2bBody.innerHTML = `<tr><td colspan="2" class="p-3 text-center text-slate-500">कोई दुकानदार रिकॉर्ड नहीं।</td></tr>`; }
+            if(!b2bSnap || b2bSnap.empty) { b2bBody.innerHTML = `<tr><td colspan="2" class="p-3 text-center text-slate-500">कोई दुकानदार रिकॉर्ड नहीं।</td></tr>`; }
             else {
-                b2bLeads.reverse().forEach((b) => {
+                b2bSnap.forEach((docSnap) => {
+                    const b = docSnap.data();
                     const tr = document.createElement('tr');
                     tr.className = "border-b border-slate-800 text-slate-300";
                     tr.innerHTML = `<td class="p-2 font-bold text-white">${b.shop}</td><td class="p-2 text-sky-400">${b.phone}</td>`;
@@ -1076,11 +1151,23 @@
             }
         }
 
-        function clearAllLeads() {
+        async function clearAllLeads() {
             if(!isAuthorizedAdmin) return;
-            if(confirm("सावधान! क्या आप ग्राहकों और B2B डेटा की पूरी हिस्ट्री डिलीट करना चाहते हैं?")) { 
-                localStorage.removeItem('svk_leads'); 
-                localStorage.removeItem('svk_b2b_leads'); 
+            if(confirm("सावधान! क्या आप ग्राहकों और B2B डेटा की पूरी हिस्ट्री डिलीट करना चाहते हैं?")) {
+                try {
+                    const leadsSnap = await db.collection('leads').get();
+                    const batch1 = db.batch();
+                    leadsSnap.forEach(docSnap => batch1.delete(docSnap.ref));
+                    await batch1.commit();
+
+                    const b2bSnap = await db.collection('b2b_leads').get();
+                    const batch2 = db.batch();
+                    b2bSnap.forEach(docSnap => batch2.delete(docSnap.ref));
+                    await batch2.commit();
+                } catch (err) {
+                    console.error("Clear leads error:", err);
+                    alert("⚠️ डिलीट करने में समस्या आई।");
+                }
                 renderLeadsTableSecure(); 
             }
         }
